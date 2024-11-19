@@ -1,3 +1,11 @@
+cc main.c libmlx42.a -Iinclude -lglfw  -ldl -pthread
+./a.out
+
+export DISPLAY=$(ip route list default | awk '{print $3}'):0
+export LIBGL_ALWAYS_INDIRECT=0
+
+
+
 libmlx_Linux.a
 libmlx.a
 

@@ -1,30 +1,35 @@
-NAME = so_long
+NAME	:= so_long
+CFLAGS	:= -Wextra -Wall -Werror
+LIBMLX	:= ./MLX42
+CXX 	:= cc
+# HEADERS	:= -I ./include -I $(LIBMLX)/include/MLX42
+HEADERS	:= -I $(LIBMLX)/include/MLX42
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# SRCS	:= $(shell find ./src -iname "*.c")
+SRCS	:= main.c
+OBJS	:= ${SRCS:.c=.o}
 
-SRCS = main.c
-OBJS = $(SRCS:.c=.o)
-CXX = cc
-# CCGLAGS = -Wall -Werror -Wextra
-CCGLAGS =
-# MLXFLAG = -lmlx -lXext -lX11
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
-# $(NAME): $(OBJ)
-# 	$(CXX) $(OBJ) -Lmlx  -lmlx -L/usr/lib -Imlx -lmlx_Linux -lX11 -lXext -o $(NAME)
-
-$(NAME): $(OBJS)
-	$(CXX)  -o $(NAME) $(OBJS) $(MLX_FLAGS)
-
-%.o: %.c
-	$(CXX)  -I/usr/include -Imlx -c $< -o $@
 
 all: $(NAME)
+	@echo "built $(NAME) successfully"
+
+%.o: %.c
+	@$(CXX) $(CFLAGS) -o $@ -c $< $(HEADERS)
+
+$(NAME): $(OBJS)
+	@$(CXX) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 clean:
-	rm -f $(OBJS)
+	@rm -rf $(OBJS)
+	@rm -rf $(LIBMLX)/build
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -rf $(NAME)
 
-re: fclean all
+re: clean all
 
-# .PHONY: all clean fclean re
+.PHONY: all, clean, fclean, re, libmlx
