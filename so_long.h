@@ -6,9 +6,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
-#define WIDTH 256
-#define HEIGHT 256
+# define BUFFER_SIZE 42
+# define WIDTH 256
+# define HEIGHT 256
 typedef struct s_data
 {
 	void *mlx;
@@ -22,7 +22,7 @@ typedef struct s_data
 	// void *img_y;
 	// int width;
 	// int height;
-	// char **map;
+	char **map;
 	// int col_len;
 	// int row_len;
 	// int p_col;
@@ -31,8 +31,8 @@ typedef struct s_data
 	// char *player;
 	// char key;
 	// int c;
-	// int e_col;
-	// int e_row;
+	int row;
+	int col;
 	// int exit;
 	char moves;
 } t_data;
@@ -50,5 +50,4 @@ char *ft_strchr(char *s, int c);
 char *ft_strdup(const char *s1);
 char *join_string(char *ptr, char *s1, char *s2);
 char *ft_strjoin(char *s1, char *s2);
-
 #endif

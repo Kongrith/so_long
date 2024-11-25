@@ -1,8 +1,5 @@
 /*
-Steps until now :
-→ i started by reading the map file using get_next_line();
-→ then I stored it in 2d array using add_to_map();
-→ then I configured the W,S,A,D and ESC buttons usin key_press();
+
 
 https://github.com/iker-gonzalez/so-long/blob/main/main.c
 */
@@ -27,10 +24,75 @@ typedef struct mlx_image
 	bool		enabled;
 	void*           context;
 }	mlx_image_t;
+
+./so_long ./maps/exam.ber
 */
 
 #include "so_long.h"
 #include <stdio.h>
+
+void init_data(t_data *data)
+{
+	mlx_image_t *img;
+
+	data->moves = 0;
+	data->row = 0;
+	data->col = 0;
+	data->map = NULL;
+
+	img = mlx_new_image(data->mlx, 256, 256); // Create and display the image.
+	for (uint32_t x = 0; x < img->width; x++)
+		for (uint32_t y = 0; y < img->height; y++)
+			mlx_put_pixel(img, x, y, rand() % RAND_MAX);
+
+	// mlx_new_image(mlx_t * mlx, uint16_t width, uint16_t height)	Creates a whole new image.
+	mlx_image_to_window(data->mlx, img, 0, 0); // Creates a new instance/copy of an already existing image.
+	data->img = img;
+}
+
+void read_map(char argv[], t_data *data)
+{
+	int i;
+	int fd;
+	char *line;
+
+	fd = open(argv, O_RDONLY);
+	i = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		data->row += 1;
+		// printf("%s", line);
+		line = get_next_line(fd);
+	}
+	// printf("row: %d\n", data->row);
+	fd = open(argv, O_RDONLY);
+	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
+	// line = get_next_line(fd);
+	// if (line != NULL)
+	// 	data->map[0] = line;
+	// printf("%d\n", data->row);
+	while (i < data->row)
+	{
+		line = get_next_line(fd);
+		data->map[i] = line;
+		// printf("[%d]%s", i, line);
+		i++;
+		// if (line != NULL)
+		// {
+		// 	data->map[i] = line;
+		// 	printf("[%d]%s", i, line);
+		// 	i++;
+		// }
+	}
+	data->map[i] = '\0';
+	// printf("%s", data->map[0]);
+	// printf("%s", data->map[1]);
+	// printf("%s", data->map[2]);
+	// printf("%s", data->map[3]);
+	// printf("%s", data->map[4]);
+	// printf("%s", data->map[5]);
+}
 
 void my_keyhook(mlx_key_data_t keydata, void *param)
 {
@@ -49,39 +111,42 @@ void my_keyhook(mlx_key_data_t keydata, void *param)
 		data->img->instances[0].x += 5;
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(data->mlx);
-	if (keydata.action == MLX_PRESS)
+	if (keydata.action == MLX_PRESS && keydata.key != MLX_KEY_ESCAPE)
 		printf("%d\n", data->moves);
 }
+/*
+
+Steps until now :
+→ i started by reading the map file using get_next_line();
+→ then I stored it in 2d array using add_to_map();
+→ then I configured the W, S, A, D and ESC buttons usin key_press();
+*/
 
 int main(int argc, char **argv)
 {
 	void *mlx;
-	mlx_image_t *img;
 
 	t_data data;
-	(void)argv;
 	if (argc != 2)
 	{
 		write(1, "error\n", 6);
-		return (1);
+		return (EXIT_FAILURE);
 	}
+
 	mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-
-	/* Do stuff */
-
-	img = mlx_new_image(mlx, 256, 256); // Create and display the image.
-	for (uint32_t x = 0; x < img->width; x++)
-		for (uint32_t y = 0; y < img->height; y++)
-			mlx_put_pixel(img, x, y, rand() % RAND_MAX);
-
-	// mlx_new_image(mlx_t * mlx, uint16_t width, uint16_t height)	Creates a whole new image.
-	mlx_image_to_window(mlx, img, 0, 0); // Creates a new instance/copy of an already existing image.
-
-	data.moves = 0;
 	data.mlx = mlx;
-	data.img = img;
+	init_data(&data);
+	read_map(argv[1], &data);
+
+	// printf("%s", data.map[0]);
+	// printf("%s", data.map[1]);
+	// printf("%s", data.map[2]);
+	// printf("%s", data.map[3]);
+	// printf("%s", data.map[4]);
+	// printf("%s", data.map[5]);
+
 	mlx_key_hook(mlx, &my_keyhook, &data);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
