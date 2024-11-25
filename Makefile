@@ -1,27 +1,22 @@
 NAME	:= so_long
 CFLAGS	:= -Wextra -Wall -Werror
 LIBMLX	:= ./MLX42
-CXX 	:= cc
-# HEADERS	:= -I ./include -I $(LIBMLX)/include/MLX42
+
 HEADERS	:= -I $(LIBMLX)/include/MLX42
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-# SRCS	:= $(shell find ./src -iname "*.c")
-SRCS	:= main.c
+SRCS	:= so_long.c get_next_line.c get_next_line_utils.c
 OBJS	:= ${SRCS:.c=.o}
 
-
+# libmlx:
+# 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 all: $(NAME)
-	@echo "built $(NAME) successfully"
 
 %.o: %.c
-	@$(CXX) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@$(CXX) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
-
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)
