@@ -29,8 +29,6 @@ typedef struct mlx_image
 */
 
 #include "so_long.h"
-#include <stdio.h>
-
 
 
 
@@ -76,49 +74,7 @@ void init_data(t_data *data)
 	// data->img = img;
 }
 
-void read_map(char argv[], t_data *data)
-{
-	int i;
-	int fd;
-	char *line;
 
-	fd = open(argv, O_RDONLY);
-	i = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		data->row += 1;
-		// printf("%s", line);
-		line = get_next_line(fd);
-	}
-	// printf("row: %d\n", data->row);
-	fd = open(argv, O_RDONLY);
-	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
-	// line = get_next_line(fd);
-	// if (line != NULL)
-	// 	data->map[0] = line;
-	// printf("%d\n", data->row);
-	while (i < data->row)
-	{
-		line = get_next_line(fd);
-		data->map[i] = line;
-		// printf("[%d]%s", i, line);
-		i++;
-		// if (line != NULL)
-		// {
-		// 	data->map[i] = line;
-		// 	printf("[%d]%s", i, line);
-		// 	i++;
-		// }
-	}
-	data->map[i] = '\0';
-	// printf("%s", data->map[0]);
-	// printf("%s", data->map[1]);
-	// printf("%s", data->map[2]);
-	// printf("%s", data->map[3]);
-	// printf("%s", data->map[4]);
-	// printf("%s", data->map[5]);
-}
 
 void my_keyhook(mlx_key_data_t keydata, void *param)
 {
@@ -154,24 +110,17 @@ Steps until now :
 int main(int argc, char **argv)
 {
 	void *mlx;
-	(void)argv;
 	t_data data;
+
 	if (argc != 2)
 		err_handler("error\n");
+	check_map(&data, argv[1]);
 	mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	data.mlx = mlx;
 	init_data(&data);
 	// read_map(argv[1], &data);
-
-	// printf("%s", data.map[0]);
-	// printf("%s", data.map[1]);
-	// printf("%s", data.map[2]);
-	// printf("%s", data.map[3]);
-	// printf("%s", data.map[4]);
-	// printf("%s", data.map[5]);
-
 	mlx_key_hook(mlx, &my_keyhook, &data);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

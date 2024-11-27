@@ -37,3 +37,8 @@ void draw_player(t_data *data)
 	mlx_image_to_window(data->mlx, img, 0, 0);
 	data->img = img;
 }
+
+// void chk_input(char argv[])
+// {
+// 	printf("%s", argv);
+// }
