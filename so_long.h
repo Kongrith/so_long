@@ -3,14 +3,14 @@
 
 
 # include "MLX42/include/MLX42/MLX42.h"
-# include "./libft/libft.h"
+// # include "./libft/libft.h"
 # include "./printf/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # define BUFFER_SIZE 42
-# define WIDTH 256
-# define HEIGHT 256
+# define WIDTH 32
+# define HEIGHT 32
 #include <stdio.h>
 
 typedef struct s_data
@@ -59,5 +59,6 @@ void err_handler(char *cmd_failure);
 int get_rgba(int r, int g, int b, int a);
 void draw_background(t_data *data);
 void draw_player(t_data *data);
-void check_map(t_data *data, char argv[]);
+void init_map(t_data *data, char argv[]);
+void my_keyhook(mlx_key_data_t keydata, void *param);
 #endif

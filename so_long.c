@@ -1,6 +1,4 @@
 /*
-
-
 https://github.com/iker-gonzalez/so-long/blob/main/main.c
 */
 
@@ -29,22 +27,28 @@ typedef struct mlx_image
 */
 
 #include "so_long.h"
-
-
-
-void init_data(t_data *data)
+void init_data(t_data *data, char argv[])
 {
-	// xpm_t *xpm;
-	mlx_image_t *img;
+	// void *mlx;
 
-	data->moves = 0;
 	data->row = 0;
 	data->col = 0;
 	data->map = NULL;
+	data->moves = 0;
+	init_map(data, argv);
+	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
+	// if (!mlx)
+	// 	exit(EXIT_FAILURE);
+	// data->mlx = mlx;
+
+	// xpm_t *xpm;
+	mlx_image_t *img;
+
+
 	// xpm = NULL;
 	img = NULL;
 
-	img = mlx_new_image(data->mlx, 256, 256);
+	img = mlx_new_image(data->mlx, WIDTH * data->col, HEIGHT * data->row);
 	data->img = img;
 	draw_background(data);
 	draw_player(data);
@@ -75,55 +79,24 @@ void init_data(t_data *data)
 }
 
 
-
-void my_keyhook(mlx_key_data_t keydata, void *param)
-{
-	t_data *data;
-
-	data = param;
-	if (keydata.action == MLX_PRESS)
-	{
-		data->moves += 1;
-		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-			data->img->instances[0].y -= 5;
-		else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-			data->img->instances[0].x -= 5;
-		else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-			data->img->instances[0].y += 5;
-		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-			data->img->instances[0].x += 5;
-		else if (keydata.key == MLX_KEY_ESCAPE)
-			mlx_close_window(data->mlx);
-		if (keydata.key != MLX_KEY_ESCAPE)
-			printf("%d\n", data->moves);
-	}
-}
-/*
-
-Steps until now :
-→ i started by reading the map file using get_next_line();
-→ then I stored it in 2d array using add_to_map();
-→ then I configured the W, S, A, D and ESC buttons usin key_press();
-*/
-
-
 int main(int argc, char **argv)
 {
-	void *mlx;
+	// void *mlx;
 	t_data data;
 
 	if (argc != 2)
 		err_handler("error\n");
-	check_map(&data, argv[1]);
-	mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
-	if (!mlx)
-		exit(EXIT_FAILURE);
-	data.mlx = mlx;
-	init_data(&data);
+	init_data(&data ,argv[1]);
+
+	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
+	// if (!mlx)
+	// 	exit(EXIT_FAILURE);
+	// data.mlx = mlx;
+	// init_data(&data);
 	// read_map(argv[1], &data);
-	mlx_key_hook(mlx, &my_keyhook, &data);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_key_hook(data.mlx, &my_keyhook, &data);
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }
 

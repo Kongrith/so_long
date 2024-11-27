@@ -31,11 +31,11 @@ void create_map(t_data *data, char argv[])
 
 void read_map(t_data *data, char argv[])
 {
-	// int i;
+	int i;
 	int fd;
 	char *line;
 
-	// i = 0;
+	i = 0;
 	line = NULL;
 	fd = open(argv, O_RDONLY);
 	line = get_next_line(fd);
@@ -45,17 +45,27 @@ void read_map(t_data *data, char argv[])
 		data->row += 1;
 	}
 	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
+	fd = open(argv, O_RDONLY);
+	line = NULL;
+	while (i < data->row)
+	{
+		line = get_next_line(fd);
+		data->map[i] = line;
+		i++;
+	}
+	data->map[i] = '\0';
+	data->col = data->row;
 }
 
-void check_map(t_data *data, char argv[])
+void init_map(t_data *data, char argv[])
 {
-	data->moves = 0;
-	data->row = 0;
-	data->col = 0;
-	data->map = NULL;
+	void *mlx;
 
 	read_map(data, argv);
-	create_map(data, argv);
+	mlx = mlx_init(WIDTH*data->col, HEIGHT*data->row, "Cat Me If U Can", true);
+	if (!mlx)
+		exit(EXIT_FAILURE);
+	data->mlx = mlx;
 
 	ft_printf("%s", data->map[0]);
 	ft_printf("%s", data->map[1]);
