@@ -50,4 +50,9 @@ char *ft_strchr(char *s, int c);
 char *ft_strdup(const char *s1);
 char *join_string(char *ptr, char *s1, char *s2);
 char *ft_strjoin(char *s1, char *s2);
+
+void err_handler(char *cmd_failure);
+int get_rgba(int r, int g, int b, int a);
+void draw_background(t_data *data);
+void draw_player(t_data *data);
 #endif

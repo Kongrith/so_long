@@ -4,7 +4,7 @@ LIBMLX	:= ./MLX42
 
 HEADERS	:= -I $(LIBMLX)/include/MLX42
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= so_long.c get_next_line.c get_next_line_utils.c
+SRCS	:= so_long.c get_next_line.c get_next_line_utils.c so_long_util.c
 OBJS	:= ${SRCS:.c=.o}
 
 # libmlx:
