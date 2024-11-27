@@ -29,6 +29,62 @@ void create_map(t_data *data, char argv[])
 	data->map[i] = '\0';
 }
 
+/*
+There will be 1 exit, 1 player and at least 1 collectible item
+*/
+void check_map(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < data->row)
+	{
+		j = 0;
+		while (j < data->col)
+		{
+			if (data->map[i][j] == 'E')
+				data->exit += 1;
+			if (data->map[i][j] == 'P')
+				data->player += 1;
+			if (data->map[i][j] == 'C')
+				data->collect += 1;
+			j++;
+		}
+		i++;
+	}
+	if (data->exit != 1)
+		err_handler("Exit Not Equal to 1");
+	if (data->player != 1)
+		err_handler("Player Not Equal to 1");
+	if (data->collect == 0)
+		err_handler("Collectable at least 1");
+}
+
+void check_column(t_data *data)
+{
+	int i;
+	int prev_col;
+	int current_col;
+
+	i = 0;
+	while (i < data->row)
+	{
+		if (i == 0)
+			prev_col = ft_strlen(data->map[i]) - 1;
+		else
+		{
+			current_col = ft_strlen(data->map[i]) - 1;
+			if (current_col == prev_col)
+				prev_col = current_col;
+			else
+				err_handler("column not equal\n");
+		}
+		i++;
+	}
+	data->col = current_col;
+}
+
 void read_map(t_data *data, char argv[])
 {
 	int i;
@@ -54,7 +110,7 @@ void read_map(t_data *data, char argv[])
 		i++;
 	}
 	data->map[i] = '\0';
-	data->col = data->row;
+	check_column(data);
 }
 
 void init_map(t_data *data, char argv[])
@@ -62,15 +118,9 @@ void init_map(t_data *data, char argv[])
 	void *mlx;
 
 	read_map(data, argv);
-	mlx = mlx_init(WIDTH*data->col, HEIGHT*data->row, "Cat Me If U Can", true);
+	check_map(data);
+	mlx = mlx_init(WIDTH * data->col, HEIGHT * data->row, "Cat Me If U Can", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	data->mlx = mlx;
-
-	ft_printf("%s", data->map[0]);
-	ft_printf("%s", data->map[1]);
-	ft_printf("%s", data->map[2]);
-	ft_printf("%s", data->map[3]);
-	ft_printf("%s", data->map[4]);
-	ft_printf("%s", data->map[5]);
 }

@@ -27,14 +27,22 @@ typedef struct mlx_image
 */
 
 #include "so_long.h"
-void init_data(t_data *data, char argv[])
-{
-	// void *mlx;
 
+void init_data(t_data *data)
+{
+	data->map = NULL;
 	data->row = 0;
 	data->col = 0;
-	data->map = NULL;
 	data->moves = 0;
+	data->exit = 0;
+	data->player = 0;
+	data->collect = 0;
+}
+
+void initialization(t_data *data, char argv[])
+{
+
+	init_data(data);
 	init_map(data, argv);
 	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
 	// if (!mlx)
@@ -86,7 +94,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		err_handler("error\n");
-	init_data(&data ,argv[1]);
+	initialization(&data, argv[1]);
 
 	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
 	// if (!mlx)

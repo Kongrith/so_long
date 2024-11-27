@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
+# include "so_long.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -27,7 +28,7 @@ char	*stash_data(char *data, int i, int j);
 
 // Utility Function
 size_t	ft_strlen(const char *s);
-char	*ft_strchr(char *s, int c);
+// char	*ft_strchr(char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*join_string(char *ptr, char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);

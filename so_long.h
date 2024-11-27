@@ -8,7 +8,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# define BUFFER_SIZE 42
 # define WIDTH 32
 # define HEIGHT 32
 #include <stdio.h>
@@ -37,7 +36,9 @@ typedef struct s_data
 	// int c;
 	int row;
 	int col;
-	// int exit;
+	int exit;
+	int player;
+	int collect;
 	char moves;
 } t_data;
 
@@ -49,7 +50,7 @@ char *elaborate_data(char *data);
 char *stash_data(char *data, int i, int j);
 
 // Utility Function
-size_t ft_strlen(const char *s);
+// size_t ft_strlen(const char *s);
 char *ft_strchr(char *s, int c);
 char *ft_strdup(const char *s1);
 char *join_string(char *ptr, char *s1, char *s2);
