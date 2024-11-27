@@ -7,10 +7,10 @@ LIBPRINTF = libftprintf.a
 PRINTF_DIR = ./printf
 PRINTF_PATH = $(PRINTF_DIR)/$(LIBPRINTF)
 MLX_DIR = ./MLX42
-MLX_PATH = $(MLX_DIR)/include/MLX42/$(LIBMLX)
+MLX_PATH = $(MLX_DIR)/include/MLX42
 
 HEADERS	:= -I so_long.h $(MLX_PATH) $(PRINTF_PATH)
-LIBS	:= $(MLX_DIR)/build/$(LIBMLX) -ldl -lglfw -pthread -lm
+LIBS	:= $(MLX_DIR)/build/$(LIBMLX) $(PRINTF_DIR)/$(LIBPRINTF) -ldl -lglfw -pthread -lm
 SRCS	:= so_long.c check_map.c get_next_line.c get_next_line_utils.c so_long_util.c
 OBJS	:= ${SRCS:.c=.o}
 
@@ -23,7 +23,7 @@ $(NAME): $(OBJS)
 #	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 	@$(CC) $(OBJS) $(LIBS) -o $(NAME)
 
-%.o: %.c so_long.h ./printf/ft_printf.h ./libft/libft.h
+%.o: %.c so_long.h
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
