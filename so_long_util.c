@@ -14,29 +14,7 @@ void err_handler(char *cmd_failure)
 	exit(EXIT_FAILURE);
 }
 
-void draw_background(t_data *data)
-{
-	for (uint32_t x = 0; x < data->img->width; x++)
-		for (uint32_t y = 0; y < data->img->height; y++)
-			mlx_put_pixel(data->img, x, y, get_rgba(125, 125, 255, 255));
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
-}
 
-void draw_player(t_data *data)
-{
-	xpm_t *xpm;
-	mlx_image_t *img;
-
-	xpm = mlx_load_xpm42("texures/collectable.xpm42");
-	if (!xpm)
-		exit(EXIT_FAILURE);
-	img = mlx_texture_to_image(data->mlx, &xpm->texture);
-	if (!img)
-		exit(EXIT_FAILURE);
-
-	mlx_image_to_window(data->mlx, img, 0, 0);
-	data->img = img;
-}
 
 // void chk_input(char argv[])
 // {

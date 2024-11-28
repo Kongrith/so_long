@@ -30,60 +30,64 @@ typedef struct mlx_image
 
 void init_data(t_data *data)
 {
+	data->xpm_0 = NULL;
+	data->xpm_1 = NULL;
+	data->xpm_c = NULL;
+	data->xpm_e = NULL;
+	data->xpm_p = NULL;
 	data->map = NULL;
 	data->row = 0;
 	data->col = 0;
-	data->moves = 0;
 	data->exit = 0;
 	data->player = 0;
 	data->collect = 0;
+	data->moves = 0;
 }
 
-void render(t_data *data)
-{
-	// init_data(data);
-	// init_map(data, argv);
-	// create_map(data, argv);
-	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
-	// if (!mlx)
-	// 	exit(EXIT_FAILURE);
-	// data->mlx = mlx;
+// void render(t_data *data)
+// {
+// 	// init_data(data);
+// 	// init_map(data, argv);
+// 	// create_map(data, argv);
+// 	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
+// 	// if (!mlx)
+// 	// 	exit(EXIT_FAILURE);
+// 	// data->mlx = mlx;
 
-	// xpm_t *xpm;
-	mlx_image_t *img;
+// 	// xpm_t *xpm;
+// 	mlx_image_t *img;
 
-	// xpm = NULL;
-	img = NULL;
+// 	img = NULL;
 
-	img = mlx_new_image(data->mlx, WIDTH * data->col, HEIGHT * data->row);
-	data->img = img;
-	draw_background(data);
-	draw_player(data);
+// 	img = mlx_new_image(data->mlx, WIDTH * data->col, HEIGHT * data->row);
+// 	data->img = img;
+// 	draw_background(data);
+// 	draw_player(data);
 
-	// Try to load the file
-	// xpm = mlx_load_xpm42("texures/test.xpm42");
-	// if (!xpm)
-	// 	exit(EXIT_FAILURE);
+// 	// Try to load the file
+// 	// xpm = mlx_load_xpm42("texures/test.xpm42");
+// 	// if (!xpm)
+// 	// 	exit(EXIT_FAILURE);
 
-	// Convert texture to a displayable image
-	// img = mlx_texture_to_image(data->mlx, &xpm->texture);
-		// if (!img)
-		// 	exit(EXIT_FAILURE);
+// 	// Convert texture to a displayable image
+// 	// img = mlx_texture_to_image(data->mlx, &xpm->texture);
+// 		// if (!img)
+// 		// 	exit(EXIT_FAILURE);
 
 
-	// img = mlx_new_image(data->mlx, 256, 256);
-	// for (uint32_t x = 0; x < img->width; x++)
-	// 	for (uint32_t y = 0; y < img->height; y++)
-	// 		mlx_put_pixel(img, x, y, rand() % RAND_MAX);
+// 	// img = mlx_new_image(data->mlx, 256, 256);
+// 	// for (uint32_t x = 0; x < img->width; x++)
+// 	// 	for (uint32_t y = 0; y < img->height; y++)
+// 	// 		mlx_put_pixel(img, x, y, rand() % RAND_MAX);
 
-	// Display the image
-	// if (mlx_image_to_window(data->mlx, img, 0, 0) < 0)
-	// 	exit(EXIT_FAILURE);
+// 	// Display the image
+// 	// if (mlx_image_to_window(data->mlx, img, 0, 0) < 0)
+// 	// 	exit(EXIT_FAILURE);
 
-	// mlx_new_image(mlx_t * mlx, uint16_t width, uint16_t height)	Creates a whole new image.
-	// mlx_image_to_window(data->mlx, img, 0, 0); // Creates a new instance/copy of an already existing image.
-	// data->img = img;
-}
+// 	// mlx_new_image(mlx_t * mlx, uint16_t width, uint16_t height)	Creates a whole new image.
+// 	// mlx_image_to_window(data->mlx, img, 0, 0); // Creates a new instance/copy of an already existing image.
+// 	// data->img = img;
+// }
 
 
 int main(int argc, char **argv)
@@ -105,7 +109,7 @@ int main(int argc, char **argv)
 	init_map(&data, argv[1]);
 	check_map(&data);
 	create_map(&data);
-	render(&data);
+	// render(&data);
 	mlx_key_hook(data.mlx, &my_keyhook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

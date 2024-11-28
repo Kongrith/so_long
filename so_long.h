@@ -16,13 +16,11 @@ typedef struct s_data
 {
 	void *mlx;
 	mlx_image_t *img;
-	// void *mlx_win;
-	// void *img_1;
-	// void *img_0;
-	// void *img_p;
-	// void *img_e;
-	// void *img_c;
-	// void *img_y;
+	xpm_t *xpm_0;
+	xpm_t *xpm_1;
+	xpm_t *xpm_c;
+	xpm_t *xpm_e;
+	xpm_t *xpm_p;
 	// int width;
 	// int height;
 	char **map;
@@ -39,7 +37,7 @@ typedef struct s_data
 	int exit;
 	int player;
 	int collect;
-	char moves;
+	int moves;
 } t_data;
 
 // Mandatory Function
