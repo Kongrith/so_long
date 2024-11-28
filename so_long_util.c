@@ -27,7 +27,7 @@ void draw_player(t_data *data)
 	xpm_t *xpm;
 	mlx_image_t *img;
 
-	xpm = mlx_load_xpm42("texures/test.xpm42");
+	xpm = mlx_load_xpm42("texures/collectable.xpm42");
 	if (!xpm)
 		exit(EXIT_FAILURE);
 	img = mlx_texture_to_image(data->mlx, &xpm->texture);

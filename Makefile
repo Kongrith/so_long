@@ -11,7 +11,8 @@ MLX_PATH = $(MLX_DIR)/include/MLX42
 
 HEADERS	:= -I so_long.h $(MLX_PATH) $(PRINTF_PATH)
 LIBS	:= $(MLX_DIR)/build/$(LIBMLX) $(PRINTF_DIR)/$(LIBPRINTF) -ldl -lglfw -pthread -lm
-SRCS	:= so_long.c init_map.c get_next_line.c get_next_line_utils.c so_long_util.c key_hook.c
+SRCS	:= so_long.c get_next_line.c get_next_line_utils.c so_long_util.c init_map.c check_map.c create_map.c \
+	key_hook.c
 OBJS	:= ${SRCS:.c=.o}
 
 # libmlx:

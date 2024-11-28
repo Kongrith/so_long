@@ -39,11 +39,11 @@ void init_data(t_data *data)
 	data->collect = 0;
 }
 
-void initialization(t_data *data, char argv[])
+void render(t_data *data)
 {
-
-	init_data(data);
-	init_map(data, argv);
+	// init_data(data);
+	// init_map(data, argv);
+	// create_map(data, argv);
 	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
 	// if (!mlx)
 	// 	exit(EXIT_FAILURE);
@@ -51,7 +51,6 @@ void initialization(t_data *data, char argv[])
 
 	// xpm_t *xpm;
 	mlx_image_t *img;
-
 
 	// xpm = NULL;
 	img = NULL;
@@ -89,29 +88,26 @@ void initialization(t_data *data, char argv[])
 
 int main(int argc, char **argv)
 {
-	// void *mlx;
 	t_data data;
+	char *ext;
+	int len;
 
 	if (argc != 2)
 		err_handler("error\n");
-	initialization(&data, argv[1]);
-
-	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
-	// if (!mlx)
-	// 	exit(EXIT_FAILURE);
-	// data.mlx = mlx;
-	// init_data(&data);
-	// read_map(argv[1], &data);
+	ext = ft_strrchr(argv[1], '.');
+	if (ft_strlen(ext) >= ft_strlen(".ber"))
+		len = ft_strlen(ext);
+	else
+		len = ft_strlen(".ber");
+	if (ft_strncmp(ext, ".ber", len) != 0)
+		err_handler("invalid file extension !!\n");
+	init_data(&data);
+	init_map(&data, argv[1]);
+	check_map(&data);
+	create_map(&data);
+	render(&data);
 	mlx_key_hook(data.mlx, &my_keyhook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }
-
-// str = argv[1];
-// ft_initialize(&m, str);
-// ft_create_map(&m, str);
-// m.col_len -= 1;
-// ft_check_ber(str);
-// ft_check_errors(&m);
-// ft_fill_map(&m);

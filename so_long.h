@@ -62,4 +62,6 @@ void draw_background(t_data *data);
 void draw_player(t_data *data);
 void init_map(t_data *data, char argv[]);
 void my_keyhook(mlx_key_data_t keydata, void *param);
+void create_map(t_data *data);
+void check_map(t_data *data);
 #endif

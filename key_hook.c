@@ -16,7 +16,7 @@ void my_keyhook(mlx_key_data_t keydata, void *param)
 			data->img->instances[0].y += 5;
 		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 			data->img->instances[0].x += 5;
-		else if (keydata.key == MLX_KEY_ESCAPE)
+		else if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 			mlx_close_window(data->mlx);
 		if (keydata.key != MLX_KEY_ESCAPE)
 			printf("%d\n", data->moves);

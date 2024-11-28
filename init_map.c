@@ -1,38 +1,9 @@
 #include "so_long.h"
 
-void create_map(t_data *data, char argv[])
-{
-	int i;
-	int fd;
-	char *line;
-
-	i = 0;
-	line = NULL;
-	fd = open(argv, O_RDONLY);
-	// line = get_next_line(fd);
-	// if (line != NULL)
-	// 	data->map[0] = line;
-	// printf("%d\n", data->row);
-	while (i < data->row)
-	{
-		line = get_next_line(fd);
-		data->map[i] = line;
-		// printf("[%d]%s", i, line);
-		i++;
-		// if (line != NULL)
-		// {
-		// 	data->map[i] = line;
-		// 	printf("[%d]%s", i, line);
-		// 	i++;
-		// }
-	}
-	data->map[i] = '\0';
-}
-
 /*
 There will be 1 exit, 1 player and at least 1 collectible item
 */
-void check_map(t_data *data)
+void read_EPC(t_data *data)
 {
 	int i;
 	int j;
@@ -43,6 +14,8 @@ void check_map(t_data *data)
 		j = 0;
 		while (j < data->col)
 		{
+			if (data->map[i][j] != 'E' && data->map[i][j] != 'P' && data->map[i][j] != 'C' && data->map[i][j] != '0' && data->map[i][j] != '1')
+				err_handler("No EPC\n");
 			if (data->map[i][j] == 'E')
 				data->exit += 1;
 			if (data->map[i][j] == 'P')
@@ -54,14 +27,14 @@ void check_map(t_data *data)
 		i++;
 	}
 	if (data->exit != 1)
-		err_handler("Exit Not Equal to 1");
+		err_handler("Exit Not Equal to 1\n");
 	if (data->player != 1)
-		err_handler("Player Not Equal to 1");
+		err_handler("Player Not Equal to 1\n");
 	if (data->collect == 0)
-		err_handler("Collectable at least 1");
+		err_handler("Collectable at least 1\n");
 }
 
-void check_column(t_data *data)
+void get_column(t_data *data)
 {
 	int i;
 	int prev_col;
@@ -91,9 +64,10 @@ void read_map(t_data *data, char argv[])
 	int fd;
 	char *line;
 
-	i = 0;
 	line = NULL;
 	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		err_handler("No FILE\n");
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -102,7 +76,7 @@ void read_map(t_data *data, char argv[])
 	}
 	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
 	fd = open(argv, O_RDONLY);
-	line = NULL;
+	i = 0;
 	while (i < data->row)
 	{
 		line = get_next_line(fd);
@@ -110,17 +84,11 @@ void read_map(t_data *data, char argv[])
 		i++;
 	}
 	data->map[i] = '\0';
-	check_column(data);
+	get_column(data);
 }
 
 void init_map(t_data *data, char argv[])
 {
-	void *mlx;
-
 	read_map(data, argv);
-	check_map(data);
-	mlx = mlx_init(WIDTH * data->col, HEIGHT * data->row, "Cat Me If U Can", true);
-	if (!mlx)
-		exit(EXIT_FAILURE);
-	data->mlx = mlx;
+	read_EPC(data);
 }
