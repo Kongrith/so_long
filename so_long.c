@@ -30,12 +30,13 @@ typedef struct mlx_image
 
 void init_data(t_data *data)
 {
-	data->xpm_0 = NULL;
-	data->xpm_1 = NULL;
-	data->xpm_c = NULL;
-	data->xpm_e = NULL;
-	data->xpm_p = NULL;
+	// data->xpm_0 = NULL;
+	// data->xpm_1 = NULL;
+	// data->xpm_c = NULL;
+	// data->xpm_e = NULL;
+	// data->xpm_p = NULL;
 	data->map = NULL;
+	data->keep = 0;
 	data->row = 0;
 	data->col = 0;
 	data->exit = 0;
@@ -109,7 +110,6 @@ int main(int argc, char **argv)
 	init_map(&data, argv[1]);
 	check_map(&data);
 	create_map(&data);
-	// render(&data);
 	mlx_key_hook(data.mlx, &my_keyhook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

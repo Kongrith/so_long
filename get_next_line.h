@@ -27,7 +27,7 @@ char	*elaborate_data(char *data);
 char	*stash_data(char *data, int i, int j);
 
 // Utility Function
-size_t	ft_strlen(const char *s);
+// size_t	ft_strlen(const char *s);
 // char	*ft_strchr(char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*join_string(char *ptr, char *s1, char *s2);

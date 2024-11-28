@@ -16,22 +16,10 @@ typedef struct s_data
 {
 	void *mlx;
 	mlx_image_t *img;
-	xpm_t *xpm_0;
-	xpm_t *xpm_1;
-	xpm_t *xpm_c;
-	xpm_t *xpm_e;
-	xpm_t *xpm_p;
-	// int width;
-	// int height;
+	int x;
+	int y;
 	char **map;
-	// int col_len;
-	// int row_len;
-	// int p_col;
-	// int p_row;
-	// int lap;
-	// char *player;
-	// char key;
-	// int c;
+	int keep;
 	int row;
 	int col;
 	int exit;

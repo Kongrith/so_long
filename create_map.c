@@ -24,7 +24,11 @@ void draw_object(t_data *data, char *param, int row, int col, int player)
 		exit(EXIT_FAILURE);
 	mlx_image_to_window(data->mlx, img, WIDTH * col, HEIGHT * row);
 	if (player == 1)
+	{
 		data->img = img;
+		data->x = col;
+		data->y = row;
+	}
 }
 
 void draw_wall_player_collect(t_data *data)
