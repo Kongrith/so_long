@@ -15,9 +15,13 @@
 typedef struct s_data
 {
 	void *mlx;
-	mlx_image_t *img;
+	mlx_image_t *img_bg;
+	mlx_image_t *img_fg;
+	mlx_image_t *img_p;
 	int x;
 	int y;
+	int x_exit;
+	int y_exit;
 	char **map;
 	int keep;
 	int row;
@@ -50,4 +54,5 @@ void init_map(t_data *data, char argv[]);
 void my_keyhook(mlx_key_data_t keydata, void *param);
 void create_map(t_data *data);
 void check_map(t_data *data);
+void draw_object(t_data *data, char *param, int row, int col, int player);
 #endif

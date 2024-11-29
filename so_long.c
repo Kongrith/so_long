@@ -35,6 +35,9 @@ void init_data(t_data *data)
 	// data->xpm_c = NULL;
 	// data->xpm_e = NULL;
 	// data->xpm_p = NULL;
+	data->img_bg = NULL;
+	data->img_fg = NULL;
+	data->img_p = NULL;
 	data->map = NULL;
 	data->keep = 0;
 	data->row = 0;
@@ -43,6 +46,8 @@ void init_data(t_data *data)
 	data->player = 0;
 	data->collect = 0;
 	data->moves = 0;
+	data->x_exit = 0;
+	data->y_exit = 0;
 }
 
 // void render(t_data *data)

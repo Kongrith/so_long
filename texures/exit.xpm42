@@ -1,38 +1,42 @@
 !XPM42
-32 32 4 1 c
-  #FF0000FF
-. #00FF00FF
-X #0000FFFF
-o #FFFF0000
+32 32 8 1 c
+a #FF0000FF
+b #00FF00FF
+c #0000FFFF
+d #FFFF00FF
++ #FF00FFFF
+. #FFFFFFFF
+X #000000FF
+o #00000000
 oooooooooooooooooooooooooooooooo
 oooooooooooooooooooooooooooooooo
 oooooooooooooooooooooooooooooooo
-ooo        ooooooooooooooooooooo
-ooo        oooooooooo oooooooooo
-oo         ooooooooo  . oooooooo
-oooooooooooooooooo  ... oooooooo
-oooooooooooooooo  ...... ooooooo
-ooooooooooooo   ....X... ooooooo
-oooo         ..XX..XXX... oooooo
-oooo      ....XX...XX.... oooooo
-oooo     ...XXXX.XXXX..... ooooo
-oooo    ...XXXX.XXXX...... ooooo
-oooo    ..XXXXXXXXXX...... ooooo
-oooo   ...XXXXXXXXX...X..  ooooo
-oooo   ..XXXXXXXXX...XX..  ooooo
-ooooo ...XXXX..XXX...X...  ooooo
-ooooo ...XXX........X... X ooooo
-ooooo .................. X ooooo
-oooooo ...XX........... XX ooooo
-oooooo ..XX...X.....    XX ooooo
-oooooo ..XX..XX...       X ooooo
-ooooooo .....XX...       X ooooo
-ooooooo .........          ooooo
-ooooooo ........           ooooo
-oooooooo .....             ooooo
-oooooooo   ..            ooooooo
-ooooooooooo            ooooooooo
-oooooooooooooooo    oooooooooooo
+oXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo
+oXooooooooooooooooooooooooooooXo
+oXo..........................oXo
+oXo.oooooooooooooooooooooooo.oXo
+oXo.o++++++++++++++++++++++o.oXo
+oXo.o+oooooooooooooooooooo+o.oXo
+oXo.o+oaaaaaaaaaaaaaaaaaao+o.oXo
+oXo.o+oaooooooooooooooooao+o.oXo
+oXo.o+oaobbbbbbbbbbbbbboao+o.oXo
+oXo.o+oaobooooooooooooboao+o.oXo
+oXo.o+oaoboccccccccccoboao+o.oXo
+oXo.o+oaobocoooooooocoboao+o.oXo
+oXo.o+oaobocoddddddocoboao+o.oXo
+oXo.o+oaobocoddddddocoboao+o.oXo
+oXo.o+oaobocoooooooocoboao+o.oXo
+oXo.o+oaoboccccccccccoboao+o.oXo
+oXo.o+oaobooooooooooooboao+o.oXo
+oXo.o+oaobbbbbbbbbbbbbboao+o.oXo
+oXo.o+oaooooooooooooooooao+o.oXo
+oXo.o+oaaaaaaaaaaaaaaaaaao+o.oXo
+oXo.o+oooooooooooooooooooo+o.oXo
+oXo.o++++++++++++++++++++++o.oXo
+oXo.oooooooooooooooooooooooo.oXo
+oXo..........................oXo
+oXooooooooooooooooooooooooooooXo
+oXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo
 oooooooooooooooooooooooooooooooo
 oooooooooooooooooooooooooooooooo
 oooooooooooooooooooooooooooooooo
