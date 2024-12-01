@@ -1,40 +1,15 @@
-/*
-https://github.com/iker-gonzalez/so-long/blob/main/main.c
-*/
-
-/*
-typedef struct mlx
-{
-	void*		window;
-	void*		context;
-	int32_t		width;
-	int32_t		height;
-	double		delta_time;
-}	mlx_t;
-
-typedef struct mlx_image
-{
-	const uint32_t	width;
-	const uint32_t	height;
-	uint8_t*        pixels;
-	mlx_instance_t* instances;
-	int32_t		count;
-	bool		enabled;
-	void*           context;
-}	mlx_image_t;
-
-./so_long ./maps/exam.ber
-*/
-
 #include "so_long.h"
+
+void end_game(t_data *data)
+{
+	ft_printf("Congratulation !! You won the game with %d moves\n", data->moves);
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
+	exit (EXIT_SUCCESS);
+}
 
 void init_data(t_data *data)
 {
-	// data->xpm_0 = NULL;
-	// data->xpm_1 = NULL;
-	// data->xpm_c = NULL;
-	// data->xpm_e = NULL;
-	// data->xpm_p = NULL;
 	data->img_bg = NULL;
 	data->img_fg = NULL;
 	data->img_p = NULL;
@@ -48,69 +23,31 @@ void init_data(t_data *data)
 	data->moves = 0;
 	data->x_exit = 0;
 	data->y_exit = 0;
+	data->endgame = 0;
 }
 
-// void render(t_data *data)
-// {
-// 	// init_data(data);
-// 	// init_map(data, argv);
-// 	// create_map(data, argv);
-// 	// mlx = mlx_init(WIDTH, HEIGHT, "Cat Me If U Can", true);
-// 	// if (!mlx)
-// 	// 	exit(EXIT_FAILURE);
-// 	// data->mlx = mlx;
-
-// 	// xpm_t *xpm;
-// 	mlx_image_t *img;
-
-// 	img = NULL;
-
-// 	img = mlx_new_image(data->mlx, WIDTH * data->col, HEIGHT * data->row);
-// 	data->img = img;
-// 	draw_background(data);
-// 	draw_player(data);
-
-// 	// Try to load the file
-// 	// xpm = mlx_load_xpm42("texures/test.xpm42");
-// 	// if (!xpm)
-// 	// 	exit(EXIT_FAILURE);
-
-// 	// Convert texture to a displayable image
-// 	// img = mlx_texture_to_image(data->mlx, &xpm->texture);
-// 		// if (!img)
-// 		// 	exit(EXIT_FAILURE);
-
-
-// 	// img = mlx_new_image(data->mlx, 256, 256);
-// 	// for (uint32_t x = 0; x < img->width; x++)
-// 	// 	for (uint32_t y = 0; y < img->height; y++)
-// 	// 		mlx_put_pixel(img, x, y, rand() % RAND_MAX);
-
-// 	// Display the image
-// 	// if (mlx_image_to_window(data->mlx, img, 0, 0) < 0)
-// 	// 	exit(EXIT_FAILURE);
-
-// 	// mlx_new_image(mlx_t * mlx, uint16_t width, uint16_t height)	Creates a whole new image.
-// 	// mlx_image_to_window(data->mlx, img, 0, 0); // Creates a new instance/copy of an already existing image.
-// 	// data->img = img;
-// }
-
-
-int main(int argc, char **argv)
+void check_file(char argv[])
 {
-	t_data data;
 	char *ext;
 	int len;
 
-	if (argc != 2)
-		err_handler("error\n");
-	ext = ft_strrchr(argv[1], '.');
+	len = 0;
+	ext = ft_strrchr(argv, '.');
 	if (ft_strlen(ext) >= ft_strlen(".ber"))
 		len = ft_strlen(ext);
 	else
 		len = ft_strlen(".ber");
 	if (ft_strncmp(ext, ".ber", len) != 0)
 		err_handler("invalid file extension !!\n");
+}
+
+int main(int argc, char **argv)
+{
+	t_data data;
+
+	if (argc != 2)
+		err_handler("error\n");
+	check_file(argv[1]);
 	init_data(&data);
 	init_map(&data, argv[1]);
 	check_map(&data);
