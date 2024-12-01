@@ -1,57 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_util.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 05:44:06 by khkomasa          #+#    #+#             */
+/*   Updated: 2024/12/02 06:08:01 by toon             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-
-int get_rgba(int r, int g, int b, int a)
+int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void err_handler(char *cmd_failure)
+void	err_handler(char *cmd_failure)
 {
 	write(1, cmd_failure, ft_strlen(cmd_failure));
 	exit(EXIT_FAILURE);
 }
 
-void redraw_player(t_data *data, char cmd)
+void	redraw_player(t_data *data, char cmd)
 {
 	if (cmd == 'U')
-		draw_object(data, "texures/ship_up.xpm42", data->y, data->x, 1);
+		draw_player(data, "texures/ship_up.xpm42", data->y, data->x);
 	else if (cmd == 'L')
-		draw_object(data, "texures/ship_left.xpm42", data->y, data->x, 1);
+		draw_player(data, "texures/ship_left.xpm42", data->y, data->x);
 	else if (cmd == 'D')
-		draw_object(data, "texures/ship_down.xpm42", data->y, data->x, 1);
+		draw_player(data, "texures/ship_down.xpm42", data->y, data->x);
 	else if (cmd == 'R')
-		draw_object(data, "texures/ship_right.xpm42", data->y, data->x, 1);
+		draw_player(data, "texures/ship_right.xpm42", data->y, data->x);
 }
 
-void render_frame(t_data *data, char cmd, int is_player)
+void	redraw_background_foregroud(t_data *data, int is_player)
 {
-	mlx_image_t *img;
+	if (is_player == 0)
+		mlx_image_to_window(data->mlx, data->img_fg, \
+		data->x * WIDTH, data->y * HEIGHT);
+	else
+		mlx_image_to_window(data->mlx, data->img_p, \
+		data->x * WIDTH, data->y * HEIGHT);
+}
+
+void	render_frame(t_data *data, char cmd, int is_player)
+{
+	mlx_image_t	*img;
+	uint32_t	x;
+	uint32_t	y;
 
 	img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (is_player == 0)
 		data->img_fg = img;
 	else
 		data->img_p = img;
-	for (uint32_t x = 0; x < img->width; x++)
-		for (uint32_t y = 0; y < img->height; y++)
+	x = 0;
+	while (x < img->width)
+	{
+		y = 0;
+		while (y < img->height)
+		{
 			mlx_put_pixel(img, x, y, get_rgba(125, 125, 255, 255));
-	if (is_player == 0)
-		mlx_image_to_window(data->mlx, data->img_fg, data->x * WIDTH, data->y * HEIGHT);
-	else
-		mlx_image_to_window(data->mlx, data->img_p, data->x * WIDTH, data->y * HEIGHT);
+			y++;
+		}
+		x++;
+	}
+	redraw_background_foregroud(data, is_player);
 	redraw_player(data, cmd);
 }
-
-// void clear_player(t_data *data, char cmd)
-// {
-// 	mlx_image_t *img;
-
-// 	img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-// 	data->img_p = img;
-// 	for (uint32_t x = 0; x < img->width; x++)
-// 		for (uint32_t y = 0; y < img->height; y++)
-// 			mlx_put_pixel(img, x, y, get_rgba(125, 125, 255, 255));
-// 	mlx_image_to_window(data->mlx, data->img_p, data->x * WIDTH, data->y * HEIGHT);
-// 	redraw_player(data, cmd);
-// }

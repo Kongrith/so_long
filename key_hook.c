@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 05:33:15 by khkomasa          #+#    #+#             */
+/*   Updated: 2024/12/02 06:01:12 by toon             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void check_event(t_data *data, char cmd)
+void	check_event(t_data *data, char cmd)
 {
 	if (data->map[data->y][data->x] == 'C')
 	{
@@ -10,14 +22,14 @@ void check_event(t_data *data, char cmd)
 	}
 	if (data->collect == data->keep)
 	{
-		draw_object(data, "texures/exit.xpm42", data->y_exit, data->x_exit, 0);
+		draw_object(data, "texures/exit.xpm42", data->y_exit, data->x_exit);
 		data->endgame = 1;
 	}
 	if (data->map[data->y][data->x] == 'E' && data->endgame == 1)
 		end_game(data);
 }
 
-void moveable(t_data *data, char cmd)
+void	moveable(t_data *data, char cmd)
 {
 	if (cmd == 'U')
 	{
@@ -44,9 +56,9 @@ void moveable(t_data *data, char cmd)
 	check_event(data, cmd);
 }
 
-void check_move(t_data *data, char cmd)
+void	check_move(t_data *data, char cmd)
 {
-	if (cmd == 'U' && data->map[data->y-1][data->x] != '1')
+	if (cmd == 'U' && data->map[data->y - 1][data->x] != '1')
 	{
 		render_frame(data, cmd, 1);
 		moveable(data, 'U');
@@ -68,9 +80,9 @@ void check_move(t_data *data, char cmd)
 	}
 }
 
-void my_keyhook(mlx_key_data_t keydata, void *param)
+void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = param;
 	if (keydata.action == MLX_PRESS)

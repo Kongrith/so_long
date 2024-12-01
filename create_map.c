@@ -1,21 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 05:53:08 by khkomasa          #+#    #+#             */
+/*   Updated: 2024/12/02 06:11:03 by toon             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void draw_background(t_data *data)
+void	draw_background(t_data *data)
 {
-	mlx_image_t *img;
+	mlx_image_t	*img;
+	uint32_t	x;
+	uint32_t	y;
 
 	img = mlx_new_image(data->mlx, WIDTH * data->col, HEIGHT * data->row);
 	data->img_bg = img;
-	for (uint32_t x = 0; x < img->width; x++)
-		for (uint32_t y = 0; y < img->height; y++)
+	x = 0;
+	while (x < img->width)
+	{
+		y = 0;
+		while (y < img->height)
+		{
 			mlx_put_pixel(img, x, y, get_rgba(125, 125, 255, 255));
+			y++;
+		}
+		x++;
+	}
 	mlx_image_to_window(data->mlx, data->img_bg, 0, 0);
 }
 
-void draw_object(t_data *data, char *param, int row, int col, int player)
+void	draw_object(t_data *data, char *param, int row, int col)
 {
-	xpm_t *xpm;
-	mlx_image_t *img;
+	xpm_t		*xpm;
+	mlx_image_t	*img;
 
 	xpm = mlx_load_xpm42(param);
 	if (!xpm)
@@ -24,20 +46,30 @@ void draw_object(t_data *data, char *param, int row, int col, int player)
 	if (!img)
 		exit(EXIT_FAILURE);
 	mlx_image_to_window(data->mlx, img, WIDTH * col, HEIGHT * row);
-	if (player == 1)
-	{
-		data->img_p = img;
-		data->x = col;
-		data->y = row;
-	}
-	else
-		data->img_fg = img;
+	data->img_fg = img;
 }
 
-void draw_wall_player_collect(t_data *data)
+void	draw_player(t_data *data, char *param, int row, int col)
 {
-	int i;
-	int j;
+	xpm_t		*xpm;
+	mlx_image_t	*img;
+
+	xpm = mlx_load_xpm42(param);
+	if (!xpm)
+		exit(EXIT_FAILURE);
+	img = mlx_texture_to_image(data->mlx, &xpm->texture);
+	if (!img)
+		exit(EXIT_FAILURE);
+	mlx_image_to_window(data->mlx, img, WIDTH * col, HEIGHT * row);
+	data->img_p = img;
+	data->x = col;
+	data->y = row;
+}
+
+void	draw_wall_player_collect(t_data *data)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < data->row)
@@ -46,11 +78,11 @@ void draw_wall_player_collect(t_data *data)
 		while (j < data->col)
 		{
 			if (data->map[i][j] == '1')
-				draw_object(data, "texures/wall.xpm42", i, j, 0);
+				draw_object(data, "texures/wall.xpm42", i, j);
 			if (data->map[i][j] == 'P')
-				draw_object(data, "texures/ship_down.xpm42", i, j, 1);
+				draw_player(data, "texures/ship_down.xpm42", i, j);
 			if (data->map[i][j] == 'C')
-				draw_object(data, "texures/collectable.xpm42", i, j, 0);
+				draw_object(data, "texures/collectable.xpm42", i, j);
 			if (data->map[i][j] == 'E')
 			{
 				data->x_exit = j;
@@ -62,11 +94,12 @@ void draw_wall_player_collect(t_data *data)
 	}
 }
 
-void create_map(t_data *data)
+void	create_map(t_data *data)
 {
-	void *mlx;
+	void	*mlx;
 
-	mlx = mlx_init(WIDTH * data->col, HEIGHT * data->row, "Cat Me If U Can", true);
+	mlx = mlx_init(WIDTH * data->col, HEIGHT * data->row, \
+	"Cat Me If U Can", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	data->mlx = mlx;

@@ -1,31 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 05:25:12 by khkomasa          #+#    #+#             */
+/*   Updated: 2024/12/02 05:32:42 by toon             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-/*
-There will be 1 exit, 1 player and at least 1 collectible item
-*/
-void read_EPC(t_data *data)
+void	check_params(t_data *data)
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (i < data->row)
-	{
-		j = 0;
-		while (j < data->col)
-		{
-			if (data->map[i][j] != 'E' && data->map[i][j] != 'P' && data->map[i][j] != 'C' && data->map[i][j] != '0' && data->map[i][j] != '1')
-				err_handler("No EPC\n");
-			if (data->map[i][j] == 'E')
-				data->exit += 1;
-			if (data->map[i][j] == 'P')
-				data->player += 1;
-			if (data->map[i][j] == 'C')
-				data->collect += 1;
-			j++;
-		}
-		i++;
-	}
 	if (data->exit != 1)
 		err_handler("Exit Not Equal to 1\n");
 	if (data->player != 1)
@@ -34,11 +22,40 @@ void read_EPC(t_data *data)
 		err_handler("Collectable at least 1\n");
 }
 
-void get_column(t_data *data)
+void	read_epc(t_data *data)
 {
-	int i;
-	int prev_col;
-	int current_col;
+	int		i;
+	int		j;
+	char	value;
+
+	i = 0;
+	while (i < data->row)
+	{
+		j = 0;
+		while (j < data->col)
+		{
+			value = data->map[i][j];
+			if (value != 'E' && value != 'P' && value != 'C' && \
+			value != '0' && value != '1')
+				err_handler("No EPC\n");
+			if (value == 'E')
+				data->exit += 1;
+			if (value == 'P')
+				data->player += 1;
+			if (value == 'C')
+				data->collect += 1;
+			j++;
+		}
+		i++;
+	}
+	check_params(data);
+}
+
+void	get_column(t_data *data)
+{
+	int	i;
+	int	prev_col;
+	int	current_col;
 
 	i = 0;
 	while (i < data->row)
@@ -58,11 +75,11 @@ void get_column(t_data *data)
 	data->col = current_col;
 }
 
-void read_map(t_data *data, char argv[])
+void	read_map(t_data *data, char argv[])
 {
-	int i;
-	int fd;
-	char *line;
+	int		i;
+	int		fd;
+	char	*line;
 
 	line = NULL;
 	fd = open(argv, O_RDONLY);
@@ -87,8 +104,8 @@ void read_map(t_data *data, char argv[])
 	get_column(data);
 }
 
-void init_map(t_data *data, char argv[])
+void	init_map(t_data *data, char argv[])
 {
 	read_map(data, argv);
-	read_EPC(data);
+	read_epc(data);
 }

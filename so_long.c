@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khkomasa <khkomasa@student.42bangkok.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 05:35:25 by khkomasa          #+#    #+#             */
+/*   Updated: 2024/12/02 05:36:09 by khkomasa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void end_game(t_data *data)
+void	end_game(t_data *data)
 {
-	ft_printf("Congratulation !! You won the game with %d moves\n", data->moves);
+	ft_printf("Congratulation !! You won the game with %d moves\n", \
+data->moves);
 	mlx_close_window(data->mlx);
 	mlx_terminate(data->mlx);
 	exit (EXIT_SUCCESS);
 }
 
-void init_data(t_data *data)
+void	init_data(t_data *data)
 {
 	data->img_bg = NULL;
 	data->img_fg = NULL;
@@ -26,10 +39,10 @@ void init_data(t_data *data)
 	data->endgame = 0;
 }
 
-void check_file(char argv[])
+void	check_file(char argv[])
 {
-	char *ext;
-	int len;
+	char	*ext;
+	int		len;
 
 	len = 0;
 	ext = ft_strrchr(argv, '.');
@@ -41,9 +54,9 @@ void check_file(char argv[])
 		err_handler("invalid file extension !!\n");
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (argc != 2)
 		err_handler("error\n");

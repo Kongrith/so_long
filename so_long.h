@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khkomasa <khkomasa@student.42bangkok.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 06:12:32 by khkomasa          #+#    #+#             */
+/*   Updated: 2024/12/02 06:14:35 by khkomasa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
 # include "MLX42/include/MLX42/MLX42.h"
 # include "./libft/libft.h"
 # include "./printf/ft_printf.h"
@@ -13,43 +24,42 @@
 
 typedef struct s_data
 {
-	void *mlx;
-	mlx_image_t *img_bg;
-	mlx_image_t *img_fg;
-	mlx_image_t *img_p;
-	int x;
-	int y;
-	int x_exit;
-	int y_exit;
-	char **map;
-	int keep;
-	int row;
-	int col;
-	int exit;
-	int player;
-	int collect;
-	int moves;
-	int endgame;
-} t_data;
+	void		*mlx;
+	mlx_image_t	*img_bg;
+	mlx_image_t	*img_fg;
+	mlx_image_t	*img_p;
+	int			x;
+	int			y;
+	int			x_exit;
+	int			y_exit;
+	char		**map;
+	int			keep;
+	int			row;
+	int			col;
+	int			exit;
+	int			player;
+	int			collect;
+	int			moves;
+	int			endgame;
+}	t_data;
 
 // So Long
-void init_map(t_data *data, char argv[]);
-void check_map(t_data *data);
-void create_map(t_data *data);
-void my_keyhook(mlx_key_data_t keydata, void *param);
-void end_game(t_data *data);
-void err_handler(char *cmd_failure);
-void draw_background(t_data *data);
-void draw_object(t_data *data, char *param, int row, int col, int player);
-void render_frame(t_data *data, char cmd, int is_player);
-int get_rgba(int r, int g, int b, int a);
+void	init_map(t_data *data, char argv[]);
+void	check_map(t_data *data);
+void	create_map(t_data *data);
+void	my_keyhook(mlx_key_data_t keydata, void *param);
+void	end_game(t_data *data);
+void	err_handler(char *cmd_failure);
+void	draw_background(t_data *data);
+void	draw_object(t_data *data, char *param, int row, int col);
+void	draw_player(t_data *data, char *param, int row, int col);
+void	render_frame(t_data *data, char cmd, int is_player);
+int		get_rgba(int r, int g, int b, int a);
 
 // 42 Function
-// int ft_printf(const char *str, ...);
-// char *get_next_line(int fd);
-char *ft_strchr(char *s, int c);
-char *ft_strdup(const char *s1);
-char *join_string(char *ptr, char *s1, char *s2);
-char *ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
+char	*ft_strdup(const char *s1);
+char	*join_string(char *ptr, char *s1, char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif
