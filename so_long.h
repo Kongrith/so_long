@@ -2,8 +2,9 @@
 # define SO_LONG_H
 
 # include "MLX42/include/MLX42/MLX42.h"
-# include "./printf/ft_printf.h"
 # include "./libft/libft.h"
+# include "./printf/ft_printf.h"
+# include "./gnl/get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -44,7 +45,8 @@ void render_frame(t_data *data, char cmd, int is_player);
 int get_rgba(int r, int g, int b, int a);
 
 // 42 Function
-char *get_next_line(int fd);
+// int ft_printf(const char *str, ...);
+// char *get_next_line(int fd);
 char *ft_strchr(char *s, int c);
 char *ft_strdup(const char *s1);
 char *join_string(char *ptr, char *s1, char *s2);
