@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:44:06 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 12:16:38 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 13:11:52 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char **make_gridmap(char **gridmap, int row, int col)
 			new[i][j] = gridmap[i][j];
 		new[i][col] = '\0';
 	}
+	new[row] = '\0';
 	return new;
 }
 

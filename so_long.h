@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:12:32 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 12:16:09 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 12:40:42 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	render_frame(t_data *data, char cmd, int is_player);
 void	cleanup(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 char	**make_gridmap(char **gridmap, int row, int col);
+void free_double_ptr(char **ptr);
 
 // 42 Function
 char *ft_strchr(char *s, int c);

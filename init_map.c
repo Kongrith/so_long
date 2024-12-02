@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:25:12 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 08:44:36 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 13:13:03 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,10 @@
 void	check_params(t_data *data)
 {
 	if (data->exit != 1)
-	// {
-	// 	ft_printf("Exit should be only 1 !!\n");
-	// 	exit (EXIT_FAILURE);
-	// }
 		err_handler(data, "Exit should be only 1 !!\n", 0);
 	if (data->player != 1)
-	// {
-	// 	ft_printf("Player should be only 1 !!\n");
-	// 	exit (EXIT_FAILURE);
-	// }
 		err_handler(data, "Player should be only 1 !!\n", 0);
 	if (data->collect == 0)
-	// {
-	// 	ft_printf("Collectable need at least 1 !!\n");
-	// 	exit(EXIT_FAILURE);
-	// }
 		err_handler(data, "Collectable need at least 1 !!\n", 0);
 }
 
@@ -49,10 +37,6 @@ void	read_epc(t_data *data)
 			value = data->map[i][j];
 			if (value != 'E' && value != 'P' && value != 'C' && \
 			value != '0' && value != '1')
-			// {
-			// 	ft_printf("Map accepts only 01EPC character !!\n");
-			// 	exit (EXIT_FAILURE);
-			// }
 				err_handler(data, "Map accepts only 01EPC character !!\n", 0);
 			if (value == 'E')
 				data->exit += 1;
@@ -84,10 +68,6 @@ void	get_column(t_data *data)
 			if (current_col == prev_col)
 				prev_col = current_col;
 			else
-			// {
-			// 	ft_printf("Each row should be equal size !!\n");
-			// 	exit(EXIT_FAILURE);
-			// }
 				err_handler(data, "Each row should be equal size !!\n", 0);
 		}
 		i++;

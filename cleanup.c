@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:36:22 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 08:42:22 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 13:14:08 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void free_double_ptr(char **ptr)
 	i = 0;
 	while (ptr[i])
 	{
-		free(ptr[i]);
-		ptr[i] = NULL;
+		if (ptr[i] != NULL)
+			free(ptr[i]);
 		i++;
 	}
 	free(ptr);

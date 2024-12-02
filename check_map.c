@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:11:17 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 12:30:28 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 13:14:34 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	check_valid_path(t_data *data, int is_found, int i, int j)
 		err_handler(data, "Err: Player can not reach exit !!\n", 0);
 	if (data->count_c != data->collect)
 		err_handler(data, "Err: Player can not reach all collectables !!\n", 0);
+	free_double_ptr(gridmap);
 }
 
 void	check_size(t_data *data)
