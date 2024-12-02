@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:35:25 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 07:42:20 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 08:13:43 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@ void	check_file(char argv[])
 {
 	char	*ext;
 	int		len;
-
+	int		fd;
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_printf("File not found !!\n");
+		exit(EXIT_FAILURE);
+	}
 	len = 0;
 	ext = ft_strrchr(argv, '.');
 	if (ft_strlen(ext) >= ft_strlen(".ber"))
@@ -52,7 +58,10 @@ void	check_file(char argv[])
 	else
 		len = ft_strlen(".ber");
 	if (ft_strncmp(ext, ".ber", len) != 0)
-		err_handler(NULL, "Invalid file extension !!\n");
+	{
+		ft_printf("Invalid file extension !!\n");
+		exit (EXIT_FAILURE);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -60,7 +69,10 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		err_handler(NULL, "Program require input map (accept 2 agruments) !!\n");
+	{
+		ft_printf("hint: ./so_long <map_file.ber>\n");
+		return (EXIT_FAILURE);
+	}
 	check_file(argv[1]);
 	init_data(&data);
 	init_map(&data, argv[1]);

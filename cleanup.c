@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:36:22 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 07:57:48 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 08:42:22 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ void cleanup(t_data *data)
 		mlx_delete_image(data->mlx, data->img_p);
 }
 
-void err_handler(t_data *data, char *cmd_failure)
+void err_handler(t_data *data, char *cmd_failure, int clean_mlx)
 {
-	mlx_close_window(data->mlx);
+	if (clean_mlx ==1)
+		mlx_close_window(data->mlx);
 	cleanup(data);
-	mlx_terminate(data->mlx);
+	if (clean_mlx == 1)
+		mlx_terminate(data->mlx);
 	write(1, cmd_failure, ft_strlen(cmd_failure));
 	exit(EXIT_FAILURE);
 }

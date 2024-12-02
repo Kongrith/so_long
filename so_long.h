@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:12:32 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 06:51:10 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 08:41:31 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_map(t_data *data);
 void	create_map(t_data *data);
 void	my_keyhook(mlx_key_data_t keydata, void *param);
 void	end_game(t_data *data);
-void	err_handler(t_data *data, char *cmd_failure);
+void	err_handler(t_data *data, char *cmd_failure, int clean_mlx);
 void	draw_background(t_data *data);
 void	draw_object(t_data *data, char *param, int row, int col);
 void	draw_player(t_data *data, char *param, int row, int col);
