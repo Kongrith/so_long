@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khkomasa <khkomasa@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:35:25 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 05:36:09 by khkomasa         ###   ########.fr       */
+/*   Updated: 2024/12/02 07:42:20 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	end_game(t_data *data)
 	ft_printf("Congratulation !! You won the game with %d moves\n", \
 data->moves);
 	mlx_close_window(data->mlx);
+	cleanup(data);
 	mlx_terminate(data->mlx);
 	exit (EXIT_SUCCESS);
 }
@@ -51,7 +52,7 @@ void	check_file(char argv[])
 	else
 		len = ft_strlen(".ber");
 	if (ft_strncmp(ext, ".ber", len) != 0)
-		err_handler("invalid file extension !!\n");
+		err_handler(NULL, "Invalid file extension !!\n");
 }
 
 int	main(int argc, char **argv)
@@ -59,7 +60,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		err_handler("error\n");
+		err_handler(NULL, "Program require input map (accept 2 agruments) !!\n");
 	check_file(argv[1]);
 	init_data(&data);
 	init_map(&data, argv[1]);
@@ -67,6 +68,7 @@ int	main(int argc, char **argv)
 	create_map(&data);
 	mlx_key_hook(data.mlx, &my_keyhook, &data);
 	mlx_loop(data.mlx);
+	cleanup(&data);
 	mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }

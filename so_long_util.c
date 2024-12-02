@@ -6,21 +6,15 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:44:06 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 06:08:01 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 06:49:01 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_rgba(int r, int g, int b, int a)
+int		get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-void	err_handler(char *cmd_failure)
-{
-	write(1, cmd_failure, ft_strlen(cmd_failure));
-	exit(EXIT_FAILURE);
 }
 
 void	redraw_player(t_data *data, char cmd)
