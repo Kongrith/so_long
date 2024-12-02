@@ -6,15 +6,15 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:36:22 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 13:14:08 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 15:40:16 by khkomasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void free_double_ptr(char **ptr)
+void	free_double_ptr(char **ptr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ptr[i])
@@ -27,7 +27,7 @@ void free_double_ptr(char **ptr)
 	ptr = NULL;
 }
 
-void cleanup(t_data *data)
+void	cleanup(t_data *data)
 {
 	if (data->map)
 		free_double_ptr(data->map);
@@ -39,9 +39,9 @@ void cleanup(t_data *data)
 		mlx_delete_image(data->mlx, data->img_p);
 }
 
-void err_handler(t_data *data, char *cmd_failure, int clean_mlx)
+void	err_handler(t_data *data, char *cmd_failure, int clean_mlx)
 {
-	if (clean_mlx ==1)
+	if (clean_mlx == 1)
 		mlx_close_window(data->mlx);
 	cleanup(data);
 	if (clean_mlx == 1)

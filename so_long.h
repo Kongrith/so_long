@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:12:32 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 12:40:42 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 15:32:48 by khkomasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ typedef struct s_data
 
 typedef struct s_point
 {
-	int x;
-	int y;
-} t_point;
-
+	int	x;
+	int	y;
+}	t_point;
 
 // So Long
 void	init_map(t_data *data, char argv[]);
@@ -66,10 +65,10 @@ void	render_frame(t_data *data, char cmd, int is_player);
 void	cleanup(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 char	**make_gridmap(char **gridmap, int row, int col);
-void free_double_ptr(char **ptr);
+void	free_double_ptr(char **ptr);
 
 // 42 Function
-char *ft_strchr(char *s, int c);
+
 char	*ft_strdup(const char *s1);
 char	*join_string(char *ptr, char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);

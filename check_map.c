@@ -6,13 +6,13 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:11:17 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 15:14:52 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 15:33:43 by khkomasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void floodfill(t_data *data, char **gridmap, t_point cur, char to_fill)
+void	floodfill(t_data *data, char **gridmap, t_point cur, char to_fill)
 {
 	if (gridmap[cur.y][cur.x] == 'C')
 	{
@@ -24,7 +24,7 @@ void floodfill(t_data *data, char **gridmap, t_point cur, char to_fill)
 		data->count_e += 1;
 		gridmap[cur.y][cur.x] = '0';
 	}
-	if (cur.y < 0 || cur.y >= data->row || cur.x < 0 || cur.x >= data->col ||
+	if (cur.y < 0 || cur.y >= data->row || cur.x < 0 || cur.x >= data->col || \
 		gridmap[cur.y][cur.x] != to_fill)
 		return ;
 	gridmap[cur.y][cur.x] = 'F';
@@ -34,11 +34,11 @@ void floodfill(t_data *data, char **gridmap, t_point cur, char to_fill)
 	floodfill(data, gridmap, (t_point){cur.x, cur.y + 1}, to_fill);
 }
 
-void check_wall(t_data *data, char **gridmap)
+void	check_wall(t_data *data, char **gridmap)
 {
-	int i;
-	int j;
-	int chk_enclose;
+	int	i;
+	int	j;
+	int	chk_enclose;
 
 	i = 0;
 	j = -1;

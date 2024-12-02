@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:35:25 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 11:46:33 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 15:39:39 by khkomasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	check_file(char argv[])
 	char	*ext;
 	int		len;
 	int		fd;
+
 	fd = open(argv, O_RDWR);
 	if (fd == -1)
 	{
