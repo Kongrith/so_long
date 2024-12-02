@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:35:25 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 08:13:43 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 11:46:33 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	init_data(t_data *data)
 	data->x_exit = 0;
 	data->y_exit = 0;
 	data->endgame = 0;
+	data->count_c = 0;
+	data->count_e = 0;
 }
 
 void	check_file(char argv[])
@@ -45,7 +47,7 @@ void	check_file(char argv[])
 	char	*ext;
 	int		len;
 	int		fd;
-	fd = open(argv, O_RDONLY);
+	fd = open(argv, O_RDWR);
 	if (fd == -1)
 	{
 		ft_printf("File not found !!\n");

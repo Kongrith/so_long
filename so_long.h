@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:12:32 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 08:41:31 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 12:16:09 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,16 @@ typedef struct s_data
 	int			collect;
 	int			moves;
 	int			endgame;
+	int			count_c;
+	int			count_e;
 }	t_data;
+
+typedef struct s_point
+{
+	int x;
+	int y;
+} t_point;
+
 
 // So Long
 void	init_map(t_data *data, char argv[]);
@@ -54,11 +63,12 @@ void	draw_background(t_data *data);
 void	draw_object(t_data *data, char *param, int row, int col);
 void	draw_player(t_data *data, char *param, int row, int col);
 void	render_frame(t_data *data, char cmd, int is_player);
-void cleanup(t_data *data);
-int get_rgba(int r, int g, int b, int a);
+void	cleanup(t_data *data);
+int		get_rgba(int r, int g, int b, int a);
+char	**make_gridmap(char **gridmap, int row, int col);
 
 // 42 Function
-char	*ft_strchr(char *s, int c);
+char *ft_strchr(char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*join_string(char *ptr, char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);

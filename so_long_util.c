@@ -6,11 +6,26 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:44:06 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 06:49:01 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 12:16:38 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char **make_gridmap(char **gridmap, int row, int col)
+{
+	char **new;
+
+	new = malloc(sizeof(char *) * row);
+	for (int i = 0; i < row; ++i)
+	{
+		new[i] = malloc(col + 1);
+		for (int j = 0; j < col; ++j)
+			new[i][j] = gridmap[i][j];
+		new[i][col] = '\0';
+	}
+	return new;
+}
 
 int		get_rgba(int r, int g, int b, int a)
 {
