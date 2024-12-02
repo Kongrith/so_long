@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:25:12 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 13:13:03 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/02 16:07:27 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	read_map(t_data *data, char argv[])
 	char	*line;
 
 	line = NULL;
-	fd = open(argv, O_RDONLY);
+	fd = open(argv, O_RDWR);
 	if (fd == -1)
 		err_handler(data, "File not found !!\n", 0);
 	line = get_next_line(fd);
@@ -92,7 +92,7 @@ void	read_map(t_data *data, char argv[])
 		data->row += 1;
 	}
 	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
-	fd = open(argv, O_RDONLY);
+	fd = open(argv, O_RDWR);
 	i = 0;
 	while (i < data->row)
 	{

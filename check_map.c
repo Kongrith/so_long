@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:11:17 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 15:33:43 by khkomasa         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:08:31 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,7 @@ void	check_map(t_data *data)
 	is_found = 0;
 	check_size(data);
 	gridmap = make_gridmap(data->map, data->row, data->col);
-	ft_printf("before check_wall\n");
 	check_wall(data, gridmap);
-	ft_printf("after check_wall\n");
 	check_valid_path(data, gridmap, is_found, index);
-	ft_printf("after check_valid_path\n");
 	free_double_ptr(gridmap);
 }

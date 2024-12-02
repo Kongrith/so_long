@@ -6,7 +6,7 @@
 /*   By: kkomasat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:10:37 by kkomasat          #+#    #+#             */
-/*   Updated: 2024/04/13 20:54:31 by khkomasa         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:10:16 by khkomasa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ char	*elaborate_data(char *data);
 char	*stash_data(char *data, int i, int j);
 
 // Utility Function
-// size_t	ft_strlen(const char *s);
-// char	*ft_strchr(char *s, int c);
+char	*ft_strchr(char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*join_string(char *ptr, char *s1, char *s2);
 char	*ft_strjoin(char *s1, char *s2);

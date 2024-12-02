@@ -13,7 +13,6 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
-// # include "../so_long.h"
 # include "../libft/libft.h"
 
 // Mandatory Functions
