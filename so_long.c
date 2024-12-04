@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:35:25 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 16:07:34 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:33:31 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_file(char argv[])
 	fd = open(argv, O_RDWR);
 	if (fd == -1)
 	{
-		ft_printf("File not found !!\n");
+		ft_printf("Error\nFile not found !!\n");
 		exit(EXIT_FAILURE);
 	}
 	len = 0;
@@ -62,7 +62,7 @@ void	check_file(char argv[])
 		len = ft_strlen(".ber");
 	if (ft_strncmp(ext, ".ber", len) != 0)
 	{
-		ft_printf("Invalid file extension !!\n");
+		ft_printf("Error\nInvalid file extension !!\n");
 		exit (EXIT_FAILURE);
 	}
 }

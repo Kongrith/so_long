@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:25:12 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/05 01:28:52 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:33:00 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	check_params(t_data *data)
 {
 	if (data->exit != 1)
-		err_handler(data, "Exit should be only 1 !!\n", 0);
+		err_handler(data, "Error\nExit should be only 1 !!\n", 0);
 	if (data->player != 1)
-		err_handler(data, "Player should be only 1 !!\n", 0);
+		err_handler(data, "Error\nPlayer should be only 1 !!\n", 0);
 	if (data->collect == 0)
-		err_handler(data, "Collectable need at least 1 !!\n", 0);
+		err_handler(data, "Error\nCollectable need at least 1 !!\n", 0);
 }
 
 void	read_epc(t_data *data)
@@ -37,7 +37,7 @@ void	read_epc(t_data *data)
 			value = data->map[i][j];
 			if (value != 'E' && value != 'P' && value != 'C' && \
 			value != '0' && value != '1')
-				err_handler(data, "Map accepts only 01EPC character !!\n", 0);
+				err_handler(data, "Error\nMap accepts only 01EPC character !!\n", 0);
 			if (value == 'E')
 				data->exit += 1;
 			if (value == 'P')
@@ -68,7 +68,7 @@ void	get_column(t_data *data)
 			if (current_col == prev_col)
 				prev_col = current_col;
 			else
-				err_handler(data, "Each row should be equal size !!\n", 0);
+				err_handler(data, "Error\nEach row should be equal size !!\n", 0);
 		}
 		i++;
 	}
@@ -84,7 +84,7 @@ void	read_map(t_data *data, char argv[])
 	line = NULL;
 	fd = open(argv, O_RDWR);
 	if (fd == -1)
-		err_handler(data, "File not found !!\n", 0);
+		err_handler(data, "Error\nFile not found !!\n", 0);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

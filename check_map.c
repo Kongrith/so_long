@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 06:11:17 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 16:08:31 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:32:59 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	check_wall(t_data *data, char **gridmap)
 		if (gridmap[i][j] != '1')
 			chk_enclose = 0;
 	if (chk_enclose == 0)
-		err_handler(data, "Err: Map don't enclose wall completely!!\n", 0);
+		err_handler(data, "Error\nMap don't enclose wall completely!!\n", 0);
 }
 
 void	check_valid_path(t_data *data, char **gridmap, int is_found, \
@@ -85,17 +85,17 @@ t_point index)
 	gridmap[index.y][index.x] = '0';
 	floodfill(data, gridmap, begin, '0');
 	if (data->count_e != data->exit)
-		err_handler(data, "Err: Player can not reach exit !!\n", 0);
+		err_handler(data, "Error\nPlayer can not reach exit !!\n", 0);
 	if (data->count_c != data->collect)
-		err_handler(data, "Err: Player can not reach all collectables !!\n", 0);
+		err_handler(data, "Error\nPlayer can not reach all collectables !!\n", 0);
 }
 
 void	check_size(t_data *data)
 {
 	if (data->col == data->row)
-		err_handler(data, "Map should be rectangle !!\n", 0);
+		err_handler(data, "Error\nMap should be rectangle !!\n", 0);
 	if (data->col <= 2 || data->row <= 2)
-		err_handler(data, "Map too small !!\n", 0);
+		err_handler(data, "Error\nMap too small !!\n", 0);
 }
 
 void	check_map(t_data *data)
