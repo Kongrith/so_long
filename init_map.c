@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:25:12 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 16:07:27 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:28:52 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	read_map(t_data *data, char argv[])
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
+		free(line);
 		data->row += 1;
 	}
 	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
