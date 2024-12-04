@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:44:06 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 15:37:40 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:24:07 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	get_rgba(int r, int g, int b, int a)
 void	redraw_player(t_data *data, char cmd)
 {
 	if (cmd == 'U')
-		draw_player(data, "texures/ship_up.xpm42", data->y, data->x);
+		draw_player(data, "textures/ship_up.xpm42", data->y, data->x);
 	else if (cmd == 'L')
-		draw_player(data, "texures/ship_left.xpm42", data->y, data->x);
+		draw_player(data, "textures/ship_left.xpm42", data->y, data->x);
 	else if (cmd == 'D')
-		draw_player(data, "texures/ship_down.xpm42", data->y, data->x);
+		draw_player(data, "textures/ship_down.xpm42", data->y, data->x);
 	else if (cmd == 'R')
-		draw_player(data, "texures/ship_right.xpm42", data->y, data->x);
+		draw_player(data, "textures/ship_right.xpm42", data->y, data->x);
 }
 
 void	redraw_background_foregroud(t_data *data, int is_player)

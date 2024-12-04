@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:33:15 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 06:01:12 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:24:10 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_event(t_data *data, char cmd)
 	}
 	if (data->collect == data->keep)
 	{
-		draw_object(data, "texures/exit.xpm42", data->y_exit, data->x_exit);
+		draw_object(data, "textures/exit.xpm42", data->y_exit, data->x_exit);
 		data->endgame = 1;
 	}
 	if (data->map[data->y][data->x] == 'E' && data->endgame == 1)

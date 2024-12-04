@@ -6,7 +6,7 @@
 /*   By: toon <toon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 05:53:08 by khkomasa          #+#    #+#             */
-/*   Updated: 2024/12/02 06:11:03 by toon             ###   ########.fr       */
+/*   Updated: 2024/12/05 01:24:11 by toon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void	draw_wall_player_collect(t_data *data)
 		while (j < data->col)
 		{
 			if (data->map[i][j] == '1')
-				draw_object(data, "texures/wall.xpm42", i, j);
+				draw_object(data, "textures/wall.xpm42", i, j);
 			if (data->map[i][j] == 'P')
-				draw_player(data, "texures/ship_down.xpm42", i, j);
+				draw_player(data, "textures/ship_down.xpm42", i, j);
 			if (data->map[i][j] == 'C')
-				draw_object(data, "texures/collectable.xpm42", i, j);
+				draw_object(data, "textures/collectable.xpm42", i, j);
 			if (data->map[i][j] == 'E')
 			{
 				data->x_exit = j;
