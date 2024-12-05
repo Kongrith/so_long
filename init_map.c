@@ -86,27 +86,23 @@ void	read_map(t_data *data, char argv[])
 	if (fd == -1)
 		err_handler(data, "Error\nFile not found !!\n", 0);
 	line = get_next_line(fd);
+	free(line);
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
 		free(line);
 		data->row += 1;
 	}
-	data->map = (char **)malloc(sizeof(char *) * (data->row + 1));
+	data->map = (char **)malloc(sizeof(char *) * (data->row ));
 	fd = open(argv, O_RDWR);
 	i = 0;
-	while (i < data->row)
+	while (i <= data->row)
 	{
 		line = get_next_line(fd);
-		// if (line != NULL)
-		// 	ft_printf("%d %s", i, line);
 		data->map[i] = line;
 		i++;
 	}
-	data->map[i] = "";
-	// if (line != NULL)
-	// 	ft_printf("%d %s\n", i, data->map[i]);
-	// ft_printf("%d %s", i, data->map[i]);
+	data->map[i] = NULL;
 	get_column(data);
 }
 

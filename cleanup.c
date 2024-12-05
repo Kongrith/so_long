@@ -17,17 +17,17 @@ void	free_double_ptr(char **ptr)
 	int	i;
 
 	i = 0;
-	while (ptr[i] && ptr[i][0] != '\0')
+	while (ptr[i])
 	{
-		ft_printf("%d %s", i, ptr[i]);
-		if (ptr[i] != NULL)
-			free(ptr[i]);
+		free(ptr[i]);
+		ptr[i] = NULL;
 		i++;
 	}
-	free(ptr[i]);
-	// ft_printf("%d %s\n", i, ptr[i]);
-	free(ptr);
-	ptr = NULL;
+	if (ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 }
 
 void	cleanup(t_data *data)
