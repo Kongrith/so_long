@@ -93,7 +93,7 @@ void	read_map(t_data *data, char argv[])
 		free(line);
 		data->row += 1;
 	}
-	data->map = (char **)malloc(sizeof(char *) * (data->row ));
+	data->map = malloc(sizeof(char *) * (data->row + 1));
 	fd = open(argv, O_RDWR);
 	i = 0;
 	while (i <= data->row)
@@ -104,6 +104,7 @@ void	read_map(t_data *data, char argv[])
 	}
 	data->map[i] = NULL;
 	get_column(data);
+	close(fd);
 }
 
 void	init_map(t_data *data, char argv[])

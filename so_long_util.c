@@ -18,7 +18,8 @@ char	**make_gridmap(char **gridmap, int row, int col)
 	int		i;
 	int		j;
 
-	new = malloc(sizeof(char *) * row);
+	new = malloc(sizeof(char *) * (row + 1));
+	// data->map = malloc(sizeof(char *) * (data->row + 1));
 	i = 0;
 	while (i < row)
 	{
@@ -32,6 +33,7 @@ char	**make_gridmap(char **gridmap, int row, int col)
 		new[i][col] = '\0';
 		i++;
 	}
+	// ft_printf("\niiiiii: %d\n", i);
 	new[row] = NULL;
 	return (new);
 }
