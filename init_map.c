@@ -98,10 +98,15 @@ void	read_map(t_data *data, char argv[])
 	while (i < data->row)
 	{
 		line = get_next_line(fd);
+		// if (line != NULL)
+		// 	ft_printf("%d %s", i, line);
 		data->map[i] = line;
 		i++;
 	}
-	data->map[i] = '\0';
+	data->map[i] = "";
+	// if (line != NULL)
+	// 	ft_printf("%d %s\n", i, data->map[i]);
+	// ft_printf("%d %s", i, data->map[i]);
 	get_column(data);
 }
 

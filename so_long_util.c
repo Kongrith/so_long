@@ -32,7 +32,7 @@ char	**make_gridmap(char **gridmap, int row, int col)
 		new[i][col] = '\0';
 		i++;
 	}
-	new[row] = '\0';
+	new[row] = "";
 	return (new);
 }
 

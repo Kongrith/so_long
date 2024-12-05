@@ -19,7 +19,7 @@ PRINTF_PATH = $(PRINTF_DIR)/$(LIBFTPRINTF)
 
 HEADERS	:= -I.-I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(GNL_DIR) -I$(MLX_PATH)
 LIBS	:= $(MLX_DIR)/build/$(LIBMLX) $(LIBFT_DIR)/$(LIBFT) $(PRINTF_DIR)/$(LIBFTPRINTF) $(GNL_DIR)/$(LIBGNL) \
-	-ldl -lglfw -pthread -lm
+	-ldl -lglfw -pthread -lm -lXext -lX11 -lz
 SRCS	:= so_long.c so_long_util.c init_map.c check_map.c create_map.c key_hook.c cleanup.c
 OBJS	:= ${SRCS:.c=.o}
 

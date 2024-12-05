@@ -45,6 +45,7 @@ void	draw_object(t_data *data, char *param, int row, int col)
 	img = mlx_texture_to_image(data->mlx, &xpm->texture);
 	if (!img)
 		exit(EXIT_FAILURE);
+	mlx_delete_xpm42(xpm);
 	mlx_image_to_window(data->mlx, img, WIDTH * col, HEIGHT * row);
 	data->img_fg = img;
 }
@@ -60,6 +61,7 @@ void	draw_player(t_data *data, char *param, int row, int col)
 	img = mlx_texture_to_image(data->mlx, &xpm->texture);
 	if (!img)
 		exit(EXIT_FAILURE);
+	mlx_delete_xpm42(xpm);
 	mlx_image_to_window(data->mlx, img, WIDTH * col, HEIGHT * row);
 	data->img_p = img;
 	data->x = col;
@@ -78,11 +80,11 @@ void	draw_wall_player_collect(t_data *data)
 		while (j < data->col)
 		{
 			if (data->map[i][j] == '1')
-				draw_object(data, "textures/wall.xpm42", i, j);
+				draw_object(data, "./textures/wall.xpm42", i, j);
 			if (data->map[i][j] == 'P')
-				draw_player(data, "textures/ship_down.xpm42", i, j);
+				draw_player(data, "./textures/ship_down.xpm42", i, j);
 			if (data->map[i][j] == 'C')
-				draw_object(data, "textures/collectable.xpm42", i, j);
+				draw_object(data, "./textures/collectable.xpm42", i, j);
 			if (data->map[i][j] == 'E')
 			{
 				data->x_exit = j;

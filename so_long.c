@@ -67,6 +67,9 @@ void	check_file(char argv[])
 	}
 }
 
+/*
+valgrind --leak-check=full --show-leak-kinds=all ./so_long maps/good.ber 2>&1 | tee -a a.txt ;
+*/
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -79,11 +82,11 @@ int	main(int argc, char **argv)
 	check_file(argv[1]);
 	init_data(&data);
 	init_map(&data, argv[1]);
-	check_map(&data);
-	create_map(&data);
-	mlx_key_hook(data.mlx, &my_keyhook, &data);
-	mlx_loop(data.mlx);
+	// check_map(&data);
+	// create_map(&data);
+	// mlx_key_hook(data.mlx, &my_keyhook, &data);
+	// mlx_loop(data.mlx);
 	cleanup(&data);
-	mlx_terminate(data.mlx);
+	// mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }
