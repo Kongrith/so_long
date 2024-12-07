@@ -24,10 +24,10 @@
 
 typedef struct s_data
 {
-	void		*mlx;
-	mlx_image_t	*img_bg;
-	mlx_image_t	*img_fg;
-	mlx_image_t	*img_p;
+	mlx_t *mlx;
+	mlx_image_t *img_bg;
+	mlx_image_t *img_fg;
+	mlx_image_t *img_p;
 	int			x;
 	int			y;
 	int			x_exit;

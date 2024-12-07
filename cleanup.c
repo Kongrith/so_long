@@ -24,27 +24,20 @@ void	free_double_ptr(char **ptr)
 		i++;
 	}
 	free(ptr[i]);
-	if (ptr)
-	{
-		free(ptr);
-		ptr = NULL;
-	}
+	free(ptr);
+	// if (ptr)
+	// {
+	// 	free(ptr);
+	// 	ptr = NULL;
+	// }
 }
 
 void	cleanup(t_data *data)
 {
-	if (data->map)
-		free_double_ptr(data->map);
-	if (data->img_bg)
-		mlx_delete_image(data->mlx, data->img_bg);
-	if (data->img_fg)
-		mlx_delete_image(data->mlx, data->img_fg);
-	if (data->img_p)
-		mlx_delete_image(data->mlx, data->img_p);
-	// if (data->mlx)
-	// {
-	// 	free(data->mlx);
-	// }
+	free_double_ptr(data->map);
+	mlx_delete_image(data->mlx, data->img_bg);
+	mlx_delete_image(data->mlx, data->img_fg);
+	mlx_delete_image(data->mlx, data->img_p);
 }
 
 void	err_handler(t_data *data, char *cmd_failure, int clean_mlx)

@@ -14,19 +14,20 @@
 
 void	check_event(t_data *data, char cmd)
 {
+	(void)cmd;
 	if (data->map[data->y][data->x] == 'C')
 	{
 		data->map[data->y][data->x] = '0';
-		render_frame(data, cmd, 0);
+		// render_frame(data, cmd, 0);
 		data->keep += 1;
 	}
-	if (data->collect == data->keep)
-	{
-		draw_object(data, "textures/exit.xpm42", data->y_exit, data->x_exit);
-		data->endgame = 1;
-	}
-	if (data->map[data->y][data->x] == 'E' && data->endgame == 1)
-		end_game(data);
+	// if (data->collect == data->keep)
+	// {
+	// 	draw_object(data, "textures/exit.xpm42", data->y_exit, data->x_exit);
+	// 	data->endgame = 1;
+	// }
+	// if (data->map[data->y][data->x] == 'E' && data->endgame == 1)
+	// 	end_game(data);
 }
 
 void	moveable(t_data *data, char cmd)
@@ -60,22 +61,22 @@ void	check_move(t_data *data, char cmd)
 {
 	if (cmd == 'U' && data->map[data->y - 1][data->x] != '1')
 	{
-		render_frame(data, cmd, 1);
+		// render_frame(data, cmd, 1);
 		moveable(data, 'U');
 	}
 	else if (cmd == 'L' && data->map[data->y][data->x - 1] != '1')
 	{
-		render_frame(data, cmd, 1);
+		// render_frame(data, cmd, 1);
 		moveable(data, 'L');
 	}
 	else if (cmd == 'D' && data->map[data->y + 1][data->x] != '1')
 	{
-		render_frame(data, cmd, 1);
+		// render_frame(data, cmd, 1);
 		moveable(data, 'D');
 	}
 	else if (cmd == 'R' && data->map[data->y][data->x + 1] != '1')
 	{
-		render_frame(data, cmd, 1);
+		// render_frame(data, cmd, 1);
 		moveable(data, 'R');
 	}
 }
@@ -96,10 +97,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 			check_move(data, 'R');
 		else if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
-		{
-			// free(data);
 			mlx_close_window(data->mlx);
-		}
-
 	}
 }

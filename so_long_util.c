@@ -32,7 +32,6 @@ char **make_gridmap(char **map, int row, int col)
 		new[i][j] = '\0';
 		i++;
 	}
-	// new[i] = (char *)malloc(sizeof(char));
 	new[i] = NULL;
 	return (new);
 }

@@ -88,5 +88,12 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx);
 	cleanup(&data);
 	mlx_terminate(data.mlx);
+	if (data.mlx)
+	{
+		// free(&data);
+		// ft_printf("eie\n");
+		ft_printf("%p\n", data);
+		ft_printf("%p\n", data.mlx);
+	}
 	return (EXIT_SUCCESS);
 }

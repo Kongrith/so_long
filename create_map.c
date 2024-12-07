@@ -15,22 +15,22 @@
 void	draw_background(t_data *data)
 {
 	mlx_image_t	*img;
-	uint32_t	x;
-	uint32_t	y;
+	// uint32_t	x;
+	// uint32_t	y;
 
 	img = mlx_new_image(data->mlx, WIDTH * data->col, HEIGHT * data->row);
 	data->img_bg = img;
-	x = 0;
-	while (x < img->width)
-	{
-		y = 0;
-		while (y < img->height)
-		{
-			mlx_put_pixel(img, x, y, get_rgba(125, 125, 255, 255));
-			y++;
-		}
-		x++;
-	}
+	// x = 0;
+	// while (x < img->width)
+	// {
+	// 	y = 0;
+	// 	while (y < img->height)
+	// 	{
+	// 		mlx_put_pixel(img, x, y, get_rgba(125, 125, 255, 255));
+	// 		y++;
+	// 	}
+	// 	x++;
+	// }
 	mlx_image_to_window(data->mlx, data->img_bg, 0, 0);
 }
 
@@ -98,13 +98,13 @@ void	draw_wall_player_collect(t_data *data)
 
 void	create_map(t_data *data)
 {
-	void	*mlx;
+	mlx_t *mlx;
 
-	mlx = mlx_init(WIDTH * data->col, HEIGHT * data->row, \
+	mlx = mlx_init(WIDTH * data->col, HEIGHT * data->row,
 	"Cat Me If U Can", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
 	data->mlx = mlx;
 	draw_background(data);
-	draw_wall_player_collect(data);
+	// draw_wall_player_collect(data);
 }
