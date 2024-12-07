@@ -144,5 +144,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = elaborate_data(data);
 	data = stash_data(data, 0, 0);
+	// if (!data)
+	// {
+	// 	ft_printf("stash_data\n");
+	// 	return (NULL);
+	// }
+	// ft_printf("\nline: %s", line);
+	// ft_printf("\ndata: %s", data);
+	// ft_printf("GNL: %s", line);
 	return (line);
 }

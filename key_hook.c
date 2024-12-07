@@ -96,6 +96,10 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 			check_move(data, 'R');
 		else if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
+		{
+			// free(data);
 			mlx_close_window(data->mlx);
+		}
+
 	}
 }

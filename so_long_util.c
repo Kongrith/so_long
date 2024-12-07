@@ -12,29 +12,28 @@
 
 #include "so_long.h"
 
-char	**make_gridmap(char **gridmap, int row, int col)
+char **make_gridmap(char **map, int row, int col)
 {
-	char	**new;
-	int		i;
-	int		j;
+	char **new;
+	int i;
+	int j;
 
-	new = malloc(sizeof(char *) * (row + 1));
-	// data->map = malloc(sizeof(char *) * (data->row + 1));
+	new = (char **) malloc(sizeof(char *) * (row + 1));
 	i = 0;
 	while (i < row)
 	{
-		new[i] = malloc(col + 1);
+		new[i] = (char *)malloc(sizeof(char) * (col + 1));
 		j = 0;
 		while (j < col)
 		{
-			new[i][j] = gridmap[i][j];
+			new[i][j] = map[i][j];
 			j++;
 		}
-		new[i][col] = '\0';
+		new[i][j] = '\0';
 		i++;
 	}
-	// ft_printf("\niiiiii: %d\n", i);
-	new[row] = NULL;
+	// new[i] = (char *)malloc(sizeof(char));
+	new[i] = NULL;
 	return (new);
 }
 

@@ -81,19 +81,12 @@ int	main(int argc, char **argv)
 	}
 	check_file(argv[1]);
 	init_data(&data);
-	ft_printf("1\n");
 	init_map(&data, argv[1]);
-	ft_printf("2\n");
 	check_map(&data);
-	ft_printf("3\n");
 	create_map(&data);
-	ft_printf("4\n");
 	mlx_key_hook(data.mlx, &my_keyhook, &data);
-	ft_printf("5\n");
 	mlx_loop(data.mlx);
-	ft_printf("6\n");
 	cleanup(&data);
-	ft_printf("7\n");
 	mlx_terminate(data.mlx);
 	return (EXIT_SUCCESS);
 }

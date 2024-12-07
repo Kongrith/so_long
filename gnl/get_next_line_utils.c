@@ -88,13 +88,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	ptr = (char *)malloc((ft_strlen((char *)s1) + ft_strlen((char *)s2) \
 							+ 1) * sizeof(char));
+	// ft_printf("after ptr\n");
 	if (!ptr)
 	{
 		free(ptr);
 		free(s1);
 		return (NULL);
 	}
+	// ft_printf("after ptr before join_string\n");
 	ptr = join_string(ptr, s1, s2);
+	// ft_printf("after join_string: %s\n", ptr);
 	free(s1);
 	return (ptr);
 }

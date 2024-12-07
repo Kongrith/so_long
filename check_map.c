@@ -107,6 +107,7 @@ void	check_map(t_data *data)
 	index.x = 0;
 	index.y = 0;
 	is_found = 0;
+	// gridmap = (char **)malloc(sizeof(char *) * (data->row + 1));
 	check_size(data);
 	gridmap = make_gridmap(data->map, data->row, data->col);
 	check_wall(data, gridmap);

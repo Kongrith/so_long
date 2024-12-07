@@ -94,15 +94,18 @@ void	read_map(t_data *data, char argv[])
 		data->row += 1;
 	}
 	data->map = malloc(sizeof(char *) * (data->row + 1));
+
+	close(fd);
 	fd = open(argv, O_RDWR);
 	i = 0;
-	while (i <= data->row)
+	while (i < data->row)
 	{
 		line = get_next_line(fd);
 		data->map[i] = line;
 		i++;
 	}
-	data->map[i] = NULL;
+	line = get_next_line(fd);
+	data->map[i] = line;
 	get_column(data);
 	close(fd);
 }

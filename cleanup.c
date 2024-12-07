@@ -19,20 +19,16 @@ void	free_double_ptr(char **ptr)
 	i = 0;
 	while (ptr[i])
 	{
-		ft_printf("%s\n", ptr[i]);
 		free(ptr[i]);
 		ptr[i] = NULL;
 		i++;
 	}
-	ft_printf("%s\n", ptr[i]);
-	if (ptr != NULL)
+	free(ptr[i]);
+	if (ptr)
 	{
-		// ft_printf("bb\n");
 		free(ptr);
-		// ft_printf("cc\n");
 		ptr = NULL;
 	}
-	ft_printf("dd\n");
 }
 
 void	cleanup(t_data *data)
@@ -47,7 +43,6 @@ void	cleanup(t_data *data)
 		mlx_delete_image(data->mlx, data->img_p);
 	// if (data->mlx)
 	// {
-	// 	ft_printf(">>>> %d\n", data->mlx);
 	// 	free(data->mlx);
 	// }
 }

@@ -64,8 +64,8 @@ void	draw_player(t_data *data, char *param, int row, int col);
 void	render_frame(t_data *data, char cmd, int is_player);
 void	cleanup(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
-char	**make_gridmap(char **gridmap, int row, int col);
-void	free_double_ptr(char **ptr);
+char **make_gridmap(char **gridmap, int row, int col);
+void free_double_ptr(char **ptr);
 
 // 42 Function
 
