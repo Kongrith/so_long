@@ -25,11 +25,6 @@ void	free_double_ptr(char **ptr)
 	}
 	free(ptr[i]);
 	free(ptr);
-	// if (ptr)
-	// {
-	// 	free(ptr);
-	// 	ptr = NULL;
-	// }
 }
 
 void	cleanup(t_data *data)
